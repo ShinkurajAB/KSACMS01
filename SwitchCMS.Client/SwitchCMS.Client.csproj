@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Report\VehicleHandover.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+    <PackageReference Include="Blazored.Typeahead" Version="4.7.0" />
+    <PackageReference Include="MudBlazor" Version="8.14.0" />
+    <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.26" />
+    <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SwitchCMS.Client.Services\SwitchCMS.Client.Services.csproj" />
+    <ProjectReference Include="..\SwitchCMS.Component\SwitchCMS.Component.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Report\VehicleHandover.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataSetDetails\Employeeform\dsEmployeeResignation.Designer.cs">
+      <DependentUpon>dsEmployeeResignation.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="DataSetDetails\VehicleForms\VehicleHandoverDataSet.Designer.cs">
+      <DependentUpon>VehicleHandoverDataSet.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataSetDetails\Employeeform\dsEmployeeResignation.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>dsEmployeeResignation.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="DataSetDetails\VehicleForms\VehicleHandoverDataSet.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>VehicleHandoverDataSet.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>

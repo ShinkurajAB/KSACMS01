@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+//---color and Style------
+$bg-color: #f2edf3;
+$main-color:#d400ff;
+$main-dark-color:#023161;
+$main-gradient-color:linear-gradient( 90.2deg,  rgba(1,47,95,1) -0.4%, rgba(56,141,217,1) 106.1% );
+@mixin Main-button {
+    background: $button-bg-color;
+}
+*{
+
+}
+body{
+
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+p,label,button,input,a,span{
+font-family: "Poppins", sans-serif;
+}
+a,button{
+  cursor: pointer;
+}
+.login-mian-bg{
+ background-image: url("../img/background_anim.gif");
+ background-color: #cccccc;
+   background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.login-page-sub-main {
+    width: 77%;
+    margin: 0 auto;
+    box-shadow: rgba(46, 124, 194, 0.49) 0px 1px 4px;
+    border-radius: 1em;
+    /* background-color: #fff; */
+    min-height: 80vh;
+    background: rgb(255 255 255 / 56%);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(34px);
+    -webkit-backdrop-filter: blur(5px);
+    /* border: 1px solid rgba(255, 255, 255, 0.3);*/
+}
+.login-bg-box{
+    background: linear-gradient(90.2deg, rgb(1, 47, 95) -0.4%, rgb(56, 141, 217) 106.1%);
+    border-radius: 1em 9em 9em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .company-logo-text{
+      font-size: 1.4em;
+      font-weight: 700;
+      text-shadow: 2px 2px #5bb0ff;
+      letter-spacing: 4px;
+    }
+    .main-head{
+      font-size:2.2em;
+      font-weight: 700;
+
+    }
+    p{
+          max-width: 39ch;
+          margin: 0 auto;
+          font-size: 15px;
+          font-weight: 300;
+    }
+    .signup-btn{
+    margin-top: 30px;
+    display: block;
+    padding: 0.5em 2em;
+    /* background-color: #000; */
+    border-radius: 4em;
+    color: #fff;
+    font-size: 0.9em;
+    border: 1px solid #ffffff
+    }
+}
+.login-form-main{
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 0em 6em; */
+    // width: 55%;
+    margin: 0 auto;
+    align-items: center;
+        padding: 1em 1em 0em 1em;
+  h3{
+       text-align: left;
+    font-size: 1.7em;
+    font-weight: 700;
+    color: #023161;
+    margin-bottom: 0.5em;
+  }
+.sign-in-btn{
+    color: #fff;
+    background: #023161;
+    padding: .5em;
+    border: 1px solid #033263;
+    width: 100%;
+    border-radius: 3em;
+    font-weight: 500;
+    height: 2.7em;
+    margin-top: .6em;
+  }
+}
+.login-form-group{
+  margin-bottom: 1em;
+  position: relative;
+  width: 100%;
+  label{
+    margin-bottom: 5px;
+    display: block;
+    color: #023161;
+   font-size: .9em;
+    font-weight: 500;
+
+  }
+  input{
+    border: 1px solid #3181c9;
+    padding: 0em 0em 0em 2em;
+    width: 100%;
+    border-radius: 4em;
+    width: 100%;
+    height: 2.7em;
+    background: #f1f1f1;
+    &::placeholder{
+      font-size: .8em;
+    }
+    &:focus, :focus-visible{
+      border: 1px solid #033263;
+      box-shadow: rgb(4 51 100 / 52%) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+      outline: 0;
+    }
+
+  }
+  .pass-eye-btn{
+    position: absolute;
+    right: 7px;
+    top: 39px;
+    svg{
+    color: #3385ce;
+    }
+  }
+  .login-name-icon{
+     width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 39px;
+    left: 10px;
+    color: #525252;
+  }
+  
+}
+.file_head_show_span{
+   margin-bottom: 2px;
+    display: block;
+    color: #023161;
+   font-size: .9em;
+    font-weight: 500;
+}
+.login-input-bg{
+    background: #f1f1f1;
+}
+.login-input-brdr{
+      border: 1px solid #3181c9;
+}
+.main-color{
+color: #023161;
+}
+.main-bg-dark-color{
+  background-color: $main-dark-color;
+}
+/*------------Custom Check box------------------------*/
+  .checkbox-wrapper-15 .cbx {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  .checkbox-wrapper-15 .cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-15 .cbx span:first-child {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #B9B8C3;
+    transition: all 0.2s ease;
+      border-color: #3181c9;
+    background-color: #fff;
+  }
+  .checkbox-wrapper-15 .cbx span:first-child svg {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    left: 6px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-15 .cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #506EEC;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+    transition-delay: 0.2s;
+  }
+  .checkbox-wrapper-15 .cbx span:last-child {
+    margin-left: 2px;
+  }
+  // .checkbox-wrapper-15 .cbx span:last-child:after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 8px;
+  //   left: 0;
+  //   height: 1px;
+  //   width: 100%;
+  //   background: #B9B8C3;
+  //   transform-origin: 0 0;
+  //   transform: scaleX(0);
+  // }
+  .checkbox-wrapper-15 .cbx:hover span:first-child {
+    border-color: #3181c9;
+    background-color: #fff;
+  }
+
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child {
+    border-color: #3c53c7;
+    background: #3c53c7;
+    animation: check-15 0.6s ease;
+  }
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+  }
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(2.2);
+    opacity: 0;
+    transition: all 0.6s ease;
+  }
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:last-child {
+    // color: #B9B8C3;
+    transition: all 0.3s ease;
+  }
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:last-child:after {
+    transform: scaleX(1);
+    transition: all 0.3s ease;
+  }
+
+  @keyframes check-15 {
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+ /*-----------------------------------------------*/ 
+  /*-------------Dashboard-----------------------*/
+.side-bar-main {
+    // background-color: $main-dark-color;
+    .logo_section {
+        h4 {
+            color: $main-dark-color;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        img {
+            width: 3.5em;
+            border-radius: 2px;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #777777;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #777777;
+        ;
+    }
+
+    ul {
+        li {
+            a {
+                font-size: 0.9em;
+                color: #1c1c1c;
+                padding: 0.5em 0em 0.5em 0.6em;
+                margin-bottom: 0.7em;
+                border-radius: .5em;
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 5px;
+                }
+
+                &.menu-item {
+                }
+
+                &.nav-item.active {
+                    color: #023161;
+                    background-color: rgb(203 231 255);
+                    font-weight: 500;
+                    border-left: 3px solid #023161;
+                }
+            }
+
+            ul.submenu {
+                margin-left: 16px;
+
+                li {
+                    a {
+                        font-size: 0.9em;
+                        color: #1c1c1c;
+                        padding: 0.5em 0em 0.5em 0.6em;
+                        margin-bottom: 0.7em;
+                        border-radius: .5em;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+.top-bar{
+  // background-color: $main-dark-color;
+  .top-bar-user-sec{
+    // border: 1px solid #828282;
+    padding: 2px 5px;
+    border-radius: 5px;
+    .bar-user-svg{
+      color: $main-dark-color;
+      width: 35px;
+      height: 35px;
+
+    }
+    h6{
+      color: $main-dark-color;
+      line-height: 6px;
+      margin-top: 12px;
+
+    }
+    span.username_sapn{
+      font-size: 13px;
+      // color: #cfcfcf;
+    }
+  }
+}
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.submenu.open {
+  max-height: 300px;
+}
+/*--------------Dropdown-------------------*/
+.userdetailmenuBox {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  pointer-events: none;
+  animation-fill-mode: forwards;
+}
+
+/* OPEN ANIMATION */
+.userdetailmenuBox.show {
+  animation: dropdownOpen 0.25s ease forwards;
+}
+
+/* CLOSE ANIMATION */
+.userdetailmenuBox.hide {
+  animation: dropdownClose 0.25s ease forwards;
+}
+
+/* KEYFRAMES */
+@keyframes dropdownOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+
+@keyframes dropdownClose {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    pointer-events: none;
+  }
+}
+/*-----------Popup Animation----------------*/
+@keyframes popupShow {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.popup-animate {
+  animation: popupShow 0.25s ease-out forwards;
+}
+/*--------------Company Management-----------------*/
+.attach-acco-btn{
+    width:33em;
+}
+.acc-symbol {
+    font-size: 1.2em;
+}
+.modal-form-group {
+    label {
+    }
+
+    input, select {
+        background: #fbfbfb;
+
+        &:focus, :focus-visible {
+            outline: 0 !important;
+            box-shadow: none !important;
+            border: 1px solid $main-dark-color;
+        }
+    }
+}

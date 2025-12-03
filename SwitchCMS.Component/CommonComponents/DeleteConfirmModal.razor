@@ -1,0 +1,42 @@
+﻿@inject IJSRuntime JS
+
+
+<!-- Delete Confirmation Modal -->
+<div id="DeleteConfirmModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-40">
+
+    <div id="ModalContaner" class="  popup-animate">
+
+        <div class="bg-white rounded-lg md:max-w-md md:mx-auto p-4 relative inset-x-0 bottom-0 z-50 mb-4 mx-4 shadow-lg">
+            <div class="md:flex items-center">
+                <div class="rounded-full border border-gray-300 flex items-center justify-center w-16 h-16 flex-shrink-0 mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-700 icon icon-tabler icons-tabler-outline icon-tabler-trash-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7h16" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /><path d="M10 12l4 4m0 -4l-4 4" /></svg>
+                </div>
+                <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+                    <p class="font-bold">Confirm!</p>
+                    <p class="text-sm text-gray-700 mt-1">
+                        Do You Want To Delete.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center md:text-right mt-4 md:flex md:justify-end">
+                <button id="confirm-delete-btn" class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-red-200 text-red-700 rounded-lg font-semibold text-sm md:ml-2 md:order-2">
+                    Delete
+                </button>
+                <button @onclick="DeleteConfirmationHide" id="confirm-cancel-btn" class="block w-full md:inline-block md:w-auto px-4 py-3 md:py-2 bg-gray-200 rounded-lg font-semibold text-sm mt-4 md:mt-0 md:order-1">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@code {
+    private async void DeleteConfirmationHide()
+    {
+        await JS.InvokeVoidAsync("closeDeleteConfirmModal");
+    }
+}

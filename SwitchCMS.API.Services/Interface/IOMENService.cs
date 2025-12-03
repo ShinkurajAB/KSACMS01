@@ -1,0 +1,16 @@
+﻿using SwitchCMS.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SwitchCMS.API.Services.Interface
+{
+    public interface IOMENService
+    {
+        Task<List<OMEN>> GetAllMenus(string UserID, string Role);
+        Task<List<OMEN>> GetMenuUserID(int UserID);
+
+    }
+}

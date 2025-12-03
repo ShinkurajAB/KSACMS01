@@ -1,0 +1,122 @@
+﻿@attribute [Route(Utility.RouteData.Signup)]
+@inject IJSRuntime jsRuntime
+
+<main>
+		<section class="login-mian-bg min-h-screen flex items-center justify-center">
+			<div class="flex login-page-sub-main">
+				<div class="login-bg-box w-full">
+					<h5 class="company-logo-text text-center text-white text-shadow-2xs">SWITCH - انتقل</h5>
+					<h3 class="main-head text-center text-white">Welcome Back!</h3>
+					<p class="text-center text-white">Welcome back! we are so happy to have you here.it is great to see you again we hope you had a safe and enjoyable time away</p>
+                    <a class="signup-btn" href="@Utility.RouteData.Index">Already Have Account? Sign in</a>
+				</div>
+				<div class="w-full">
+					<div class="login-form-main ">
+						<h3>Sign Up</h3>
+						<form class="w-full">
+							<div class="flex gap-3">
+								<div class="login-form-group">
+									<label>Company Name</label>
+                                     <input class="!ps-4"  name="Company name" placeholder="Company Name" type="text">
+								</div>
+								<div class="login-form-group">
+									<label>Email Address</label> 
+                                    <input class="!ps-4"  name="Email Address" placeholder="Email Address" type="text">
+								</div>
+							</div>
+							<div class="flex gap-3">
+								<div class="login-form-group">
+									<label>CR Number</label>
+                                     <input name="CR Number" class="!ps-4"  placeholder="CR Number" type="text">
+								</div>
+								<div class="login-form-group">
+									<label>Contact Person</label> 
+                                    <input class="!ps-4"  name="Contact Person" placeholder="Contact Person" type="text">
+								</div>
+							</div>
+							<div class="login-form-group">
+								<label>Contact Person Number</label> 
+                                <input name="Contact Person Number" class="!ps-4" placeholder="Contact Person Number" type="text">
+							</div>
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+
+
+
+
+  <!-- Upload 1 -->
+  <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+     
+      <svg xmlns="http://www.w3.org/2000/svg"    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+    </div>
+    <div class="flex flex-col">
+      <span class="file_head_show_span">CR Certificate</span>
+      <span class="text-xs text-gray-500">Choose file</span>
+    </div>
+    <input type="file" accept="application/pdf" class="hidden">
+  </label>
+
+  <!-- Upload 2 -->
+  <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg"    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+
+    </div>
+    <div class="flex flex-col">
+      <span class="file_head_show_span">National ID</span>
+      <span class="text-xs text-gray-500">Choose file</span>
+    </div>
+    <input type="file" accept="application/pdf" class="hidden">
+  </label>
+
+  <!-- Upload 3 -->
+  <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg"    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+
+    </div>
+    <div class="flex flex-col">
+      <span class="file_head_show_span">VAT Certificate</span>
+      <span class="text-xs text-gray-500">Choose file</span>
+    </div>
+    <input type="file"  accept="application/pdf" class="hidden">
+  </label>
+
+  <!-- Upload 4 -->
+  <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg"    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+    </div>
+    <div class="flex flex-col">
+      <span class="file_head_show_span">Others</span>
+      <span class="text-xs text-gray-500">Choose file</span>
+    </div>
+    <input type="file" accept="application/pdf" class="hidden">
+  </label>
+</div>
+
+
+
+<div class="checkbox-wrapper-15 my-4">
+  <input class="inp-cbx" id="cbx-15" type="checkbox" style="display: none;"/>
+  <label class="cbx" for="cbx-15">
+    <span>
+      <svg width="12px" height="9px" viewbox="0 0 12 9">
+        <polyline points="1 5 4 8 11 1"></polyline>
+      </svg>
+    </span>
+        <span class="text-sm leading-6" for="tnc">I agree to the 
+                <a class="text-blue-600 font-semibold underline" href="#">Terms & Conditions</a></span>
+  </label>
+</div>
+
+        
+        <button class="sign-in-btn mb-3">Sign Up</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>

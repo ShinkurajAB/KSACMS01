@@ -1,0 +1,22 @@
+﻿@using SwitchCMS.Model
+
+@if (CompanyList != null)
+{
+    <MudAutocomplete T="OCMP"
+                     Value="SelectedCompany"
+                     Dense="true"
+                     Class="form-control"
+                     Clearable="true"
+                     ResetValueOnEmptyText="false"
+                     MaxLength="20"
+                     CoerceText="true"
+                     CoerceValue="true"
+                     MinCharacters="0"
+                     SelectValueOnTab="true"
+                     ToStringFunc="c => c?.Name ?? string.Empty"
+                     ValueChanged="OnCompanySelected"
+                     Variant="Variant.Text"
+                     SearchFunc="FilterCompany">
+
+    </MudAutocomplete>
+}

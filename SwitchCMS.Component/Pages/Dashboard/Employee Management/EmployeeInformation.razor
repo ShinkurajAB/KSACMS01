@@ -1,0 +1,316 @@
+﻿@attribute [Route(Utility.RouteData.EmployeeManagement)]
+@attribute [Authorize(Roles = "SuperAdmin,CompanyAdmin")]
+@layout DashboardLayout
+@inject IJSRuntime JS
+
+
+
+<div class="flex justify-between items-center  my-4">
+    <h2 class="text-xl font-bold text-gray-800 text-center mb-6">Employee Management</h2>
+
+    <button @onclick="EditEmployeeModalShow" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Create Employee
+    </button>
+
+</div>
+
+<div class=" rounded-xl border border-gray-200 ">
+    <table class="min-w-full text-left text-gray-700 ">
+      <thead class="bg-gray-200 ">
+        <tr class="border-b border-gray-100">
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+            ID
+          </th>
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+            Username
+          </th>
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+            Company
+          </th>
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+           Email
+          </th>
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+            Status
+          </th>
+          <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+            Action
+          </th>		
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 ">
+
+   <tr>
+          <td class="px-2 py-2 text-sm   text-gray-500 bg-white">
+            100
+          </td>
+            <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+           Abdulla
+          </td>
+          <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+            	K and D Company	
+          </td>
+        <td class="px-2 py-2 text-sm font-medium   text-gray-800  bg-white">
+          KandD@gmail.com
+          </td>
+            <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+            <span  class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 " >Active</span>
+          </td>
+     
+              <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
+
+            <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+            </button>
+             <div class="z-10 dropdown absolute right-2 top-10  bg-white border shadow rounded hidden min-w-48 opacity-0 scale-95 transition-all duration-200">
+          <button class=" flex w-full items-center gap-2 rounded-t-md border-b p-2 hover:bg-gray-100" @onclick="EditEmployeeModalShow">
+             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 icon icon-tabler icons-tabler-outline icon-tabler-file-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z" /></svg>
+            Edit
+          </button>
+          <button class=" flex items-center gap-2 w-full rounded-b-md  p-2 hover:bg-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+            Delete
+          </button>
+        </div>
+          </td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+
+
+<!--------Popup Start-------->
+<div id="EditEmployeeModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-40">
+    <div id="ModalContaner" class="min-w-  popup-animate">
+        <div class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-3">
+            <div class="border-b border-gray-200">
+                <button @onclick="EditEmployeeModalHide" class="transition-color absolute right-3 top-3 z-999 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600  ">
+                    <svg class="fill-current text-red-700" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.04289 16.5418C5.65237 16.9323 5.65237 17.5655 6.04289 17.956C6.43342 18.3465 7.06658 18.3465 7.45711 17.956L11.9987 13.4144L16.5408 17.9565C16.9313 18.347 17.5645 18.347 17.955 17.9565C18.3455 17.566 18.3455 16.9328 17.955 16.5423L13.4129 12.0002L17.955 7.45808C18.3455 7.06756 18.3455 6.43439 17.955 6.04387C17.5645 5.65335 16.9313 5.65335 16.5408 6.04387L11.9987 10.586L7.45711 6.04439C7.06658 5.65386 6.43342 5.65386 6.04289 6.04439C5.65237 6.43491 5.65237 7.06808 6.04289 7.4586L10.5845 12.0002L6.04289 16.5418Z" fill=""></path>
+                    </svg>
+                </button>
+                <h4 class="mb-2 text-xl font-semibold text-gray-800 text-center">
+                    Edit Employee
+                </h4>
+
+            </div>
+            <form class="">
+                <div class="custom-scrollbar h-[450px] overflow-y-auto px-2 mt-4">
+
+
+
+                    <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Name
+                            </label>
+                            <input type="text" placeholder="Name" value="Abdulla" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Job Title
+                            </label>
+                            <input type="text" placeholder="Job Title" value="Manager" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Project Name
+                            </label>
+                            <input type="text" placeholder="Project Name" value="C122Name" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                E-mail
+                            </label>
+                            <input type="email" placeholder="E-mail" value="shinku@gmail.com" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Passport Number
+                            </label>
+                            <input type="text" placeholder="Passport Number" value="UTIB0000485" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Date of Birth
+                            </label>
+                            <input type="date" placeholder="Date of Birth" value="02-06-1991" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Mobile Number
+                            </label>
+                            <input type="number" placeholder="Mobile Number" value="9605120391" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Gender
+                            </label>
+                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                <option value="" class="text-gray-700">
+                                    Select Gender
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Male
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Female
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Country
+                            </label>
+                            <input type="text" placeholder="" value="" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Iqama ID
+                            </label>
+                            <input type="number" placeholder="Iqama ID" value="111222" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Employee Status
+                            </label>
+                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                <option value="" class="text-gray-700">
+                                    Active
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Inactive
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Contract Type
+                            </label>
+                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                <option value="" class="text-gray-700">
+                                    None
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Seasonal
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Sponsor
+                            </label>
+                            <input type="text" placeholder="Sponsor" value="Shaja" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                National Unified No
+                            </label>
+                            <input type="text" placeholder="National Unified No" value="No" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Joining Date
+                            </label>
+                            <input type="date" placeholder="Joining Date" value="02-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Bank Account
+                            </label>
+                            <input type="text" placeholder="Bank Account" value="123123123123" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Contract End Date
+                            </label>
+                            <input type="text" placeholder="Contract End Date" value="02-12-2027" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Contract Status
+                            </label>
+                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                <option value="" class="text-gray-700">
+                                    Active
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Inactive
+                                </option>
+                            </select>
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Iqama Expiry Date
+                            </label>
+                            <input type="date" placeholder="Iqama Expiry Date" value="02-12-2026" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Company Name
+                            </label>
+                            <input type="text" placeholder="Insurance Company Name" value="PCM Associates" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Start Date
+                            </label>
+                            <input type="date" placeholder="Insurance Start Date" value="07-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Expiration Date
+                            </label>
+                            <input type="date" placeholder="" value="07-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Status
+                            </label>
+                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                <option value="" class="text-gray-700">
+                                    Active
+                                </option>
+                                <option value="" class="text-gray-700">
+                                    Inactive
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end border-t border-gray-200 pt-4">
+                    <button onclick="hideCreateNewDataPopUP()" type="button" class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50  sm:w-auto">
+                        Close
+                    </button>
+                    <button type="button" class="flex w-full justify-center rounded-lg main-bg-dark-color px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+<!--------Popup End-------->
+
+@code{
+    private async void EditEmployeeModalShow()
+    {
+        await JS.InvokeVoidAsync("showEditEmployeeModal");
+    }
+    private async void EditEmployeeModalHide()
+    {
+        await JS.InvokeVoidAsync("hideEditEmployeeModal");
+    }
+}

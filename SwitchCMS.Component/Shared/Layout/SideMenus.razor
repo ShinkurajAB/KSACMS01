@@ -1,0 +1,82 @@
+﻿ <aside class="side-bar-main min-w-72 max-w-72  min-h-screen overflow-y-auto shadow-md border-r border-gray-200 bg-white px-5">
+            <div class="flex items-center gap-3 mt-2 logo_section">
+        <img src="_content/SwitchCMS.Component/assets/img/Company-Logo-new.png" class="" alt="">
+                <h4 class="">SWITCH - انتقل</h4>
+            </div>
+
+        <div  class="top-bar-user-sec flex items-start gap-1 relative border-t border-b mb-3 mt-2 py-2 border-gray-200">
+                <div class="flex items-center gap-1">
+                <svg  xmlns="http://www.w3.org/2000/svg"   width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+                <div class="">
+                  <h6 class="text-base/none">@UserDetails.Name</h6>
+                  <span class="text-sm text-gray-700 username_sapn">@UserDetails.Role.ToString()</span>
+                </div>
+                </div>
+              </div>
+
+        <nav>
+            <ul>
+                <li>
+                <NavLink class="flex items-center nav-item" href="@Utility.RouteData.Dashboard" activeClass="active" Match="NavLinkMatch.All">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gauge-icon lucide-gauge"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                        Dashboard
+                    </NavLink>
+                </li>
+
+
+            <AuthorizeView Roles="SuperAdmin">
+                <Authorized>
+
+                    <SuperAdminSideBar />
+                </Authorized>
+            </AuthorizeView>
+            <AuthorizeView Roles="CompanyAdmin">
+                <Authorized>
+
+                    <CompanyAdminSideMenu />
+                </Authorized>
+            </AuthorizeView>
+
+            @if (Menus != null)
+            {
+                @if (Menus.Count > 0)
+                {
+                    foreach (var item in Menus)
+                    {
+                        <li>
+                            <a class="flex items-start justify-between menu-item" onclick="toggleMenu()">
+                                <span class="flex items-center">
+                                   
+                                    @((MarkupString)item.Icon)
+                                    @item.Name
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 9l6 6l6 -6" /></svg>
+
+                            </a>
+                              <ul class="submenu">
+                                @if (item.SubMenu.Count > 0)
+                                {
+
+                                    @foreach (var SubMenu in item.SubMenu)
+                                    {
+                                        <li>
+                                            <NavLink class="nav-item" href="@SubMenu.Link">@SubMenu.Name</NavLink>
+                                        </li>
+                                       
+                                    }
+
+                                }
+                               
+                                </ul>
+                        </li>
+                        
+
+
+
+                    }
+                }
+            }
+               
+           </ul>
+        </nav>
+        </aside>

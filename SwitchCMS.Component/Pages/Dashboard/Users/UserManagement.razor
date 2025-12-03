@@ -1,0 +1,129 @@
+﻿@attribute [Route(Utility.RouteData.UserManagement)]
+@attribute [Authorize(Roles = "SuperAdmin,CompanyAdmin")]
+@layout DashboardLayout
+
+<div class="flex justify-between items-center  my-4">
+    <h2 class="text-xl font-semibold text-gray-800 ">User Management</h2>
+
+    <button  @onclick="CreateNewUserModal"   class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Create User
+    </button>
+</div>
+
+<div class=" rounded-xl border border-gray-200 ">
+
+    @if (Pagination.UserList.Count > 0)
+    {
+        <table class="min-w-full text-left text-gray-700 ">
+            <thead class="bg-gray-200 ">
+                <tr class="border-b border-gray-100">
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        ID
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Name
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Company
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Username
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Status
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Role
+                    </th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 ">
+
+                @foreach (var item in Pagination.UserList)
+                {
+                    <tr>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.ID
+                        </td>
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                            @item.Name
+                        </td>
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800  bg-white">
+                            @item.Company.Name
+                        </td>
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                            @item.UserName
+                        </td>
+
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+
+                            @if (item.Status == Utility.Status.Active)
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
+                            }
+                            else
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
+                            }
+                           
+                        </td>
+
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                            @item.Role.ToString()
+                        </td>
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
+
+                            <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                            </button>
+                            <div class="z-10 dropdown absolute right-2 top-10 w-36 bg-white border shadow rounded hidden
+                                opacity-0 scale-95 transition-all duration-200">
+                                <div @onclick="() => SelectedUser(item)" class="p-2 hover:bg-gray-100">Edit</div>
+
+
+                                <AuthorizeView Roles="CompanyAdmin">
+                                    <Authorized>
+                                        @if (Response.Id != item.ID.ToString())
+                                        {
+                                            @if (item.Role != Utility.Roles.SuperAdmin)
+                                            {
+                                                <div @onclick="() => DeleteConfirmModal(item.ID)" class="p-2 hover:bg-gray-100">Delete</div>
+                                                 
+                                            }
+                                        }
+
+
+
+                                    </Authorized>
+                                </AuthorizeView>
+                               
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                
+                
+
+            </tbody>
+        </table>
+
+        <PaginationComponent selected="@Pagination.PageIndex"
+                             TotalCount="@Pagination.TotalPage"
+                             SelectedPageChanged="PaginationResponse" />
+    }
+
+   
+
+    </div>
+
+
+
+
+<SwitchCMS.Component.Pages.Dashboard.Users.UserManagementComponent.UserManagementModal ParmUser="User" ModalCreateorUpdate="ModalCreateOrUpdateResult" />

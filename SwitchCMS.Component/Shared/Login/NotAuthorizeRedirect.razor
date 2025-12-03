@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState>? AuthenticationStateTask { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Navigation.NavigateTo("/");
+        base.OnAfterRender(firstRender);
+    }
+
+
+
+
+}

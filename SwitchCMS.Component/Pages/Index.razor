@@ -1,0 +1,44 @@
+﻿@attribute [Route(Utility.RouteData.Index)]
+
+
+
+<main>
+    <section class="login-mian-bg min-h-screen flex items-center justify-center">
+        <div class="flex login-page-sub-main">
+            <div class="login-bg-box w-full ">
+                <h5 class="company-logo-text text-center text-white text-shadow-2xs">SWITCH - انتقل</h5>
+                <h3 class="main-head text-center text-white">Welcome Back!</h3>
+                <p class="text-center text-white">Welcome back! we are so happy to have you here.it is great to see you again we hope you had a safe and enjoyable time away</p>
+                <a class="signup-btn" href="@Utility.RouteData.Signup">No Account Yet? Signup</a>
+            </div>
+            <div class="w-full">
+
+
+                <div class="login-form-main !pt-14">
+                    <h3>Sign In</h3>
+                    <div class="w-full">
+                        <div class="login-form-group">
+                            <label>User Name</label>
+                            <input @bind-value="login.UserName" name="user name" type="text" placeholder="User Name">
+                            <svg class="login-name-icon" xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><rect width="1024" height="1024" fill="none" /><path fill="currentColor" d="M512 512a192 192 0 1 0 0-384a192 192 0 0 0 0 384m0 64a256 256 0 1 1 0-512a256 256 0 0 1 0 512m320 320v-96a96 96 0 0 0-96-96H288a96 96 0 0 0-96 96v96a32 32 0 1 1-64 0v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 1 1-64 0" /></svg>
+                        </div>
+                        <div class="login-form-group">
+                            <label>Password</label>
+                            <input @bind-value="login.Password" name="Password" type="password" placeholder="Password">
+                            <svg class="login-name-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M21 2a8.998 8.998 0 0 0-8.612 11.612L2 24v6h6l10.388-10.388A9 9 0 1 0 21 2m0 16a7 7 0 0 1-2.032-.302l-1.147-.348l-.847.847l-3.181 3.181L12.414 20L11 21.414l1.379 1.379l-1.586 1.586L9.414 23L8 24.414l1.379 1.379L7.172 28H4v-3.172l9.802-9.802l.848-.847l-.348-1.147A7 7 0 1 1 21 18" /><circle cx="22" cy="10" r="2" fill="currentColor" /></svg>
+                            <button class="pass-eye-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                            </button>
+                        </div>
+                       @*  <p class="underline text-blue-700 text-right mb-4">Forget Password?</p> *@
+                        <button @onclick="LoginUser" class="sign-in-btn">Sign In</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</main>
+

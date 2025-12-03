@@ -1,0 +1,19 @@
+﻿@if (SucessOrFaild == Data.SuccessorFailAlert.Success)
+{
+    <div id="successAlert"
+         style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1055; display: none;"
+         class="alert alert-success alert-dismissible fade" role="alert">
+        <strong>Success!</strong> @Message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+    <div id="successAlert"
+         style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1055; display: none;"
+         class="alert alert-danger alert-dismissible fade" role="alert">
+
+        <strong>Success!</strong> @Message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

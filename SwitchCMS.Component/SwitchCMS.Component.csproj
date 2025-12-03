@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.11" />
+    <PackageReference Include="MudBlazor" Version="8.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SwitchCMS.Client.Services\SwitchCMS.Client.Services.csproj" />
+    <ProjectReference Include="..\SwitchCMS.Model\SwitchCMS.Model.csproj" />
+  </ItemGroup>
+
+</Project>

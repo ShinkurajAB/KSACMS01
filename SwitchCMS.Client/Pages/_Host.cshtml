@@ -1,0 +1,64 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@using SwitchCMS.Component
+@namespace SwitchCMS.Client.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SWITCH -  انتقل</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+  
+
+    <base href="~/" />
+    <link href="css/site.css" rel="stylesheet" />
+  
+@*     <link rel="stylesheet" href="css/output.css" /> *@
+
+    <!-- Template Stylesheet -->
+    <link href="_content\SwitchCMS.Component\assets\scss\style.css" rel="stylesheet">
+
+    <!--Mud Blazor-->
+  @*  <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />  
+ *@
+
+    <link href="_content/Blazored.Typeahead/blazored-typeahead.css" rel="stylesheet" />
+  
+    <link href="css/MudBlazorStyles.css" rel="stylesheet" />
+    
+ 
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+
+     
+
+    <!-- Template Javascript -->
+    <script src="_content\SwitchCMS.Component\assets\js\main.js"></script>
+
+    <!--Mud Blazor-->
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@tailwindcss/browser@4"></script>
+
+    <script src="_content/Blazored.Typeahead/blazored-typeahead.js"></script>
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
