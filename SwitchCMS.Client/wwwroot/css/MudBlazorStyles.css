@@ -638,12 +638,6 @@ a {
         outline: none
     }
 
-label {
-    display: inline-block
-}
-
- 
-
     button:focus {
         outline: none
     }
@@ -671,11 +665,7 @@ button, [type=button], [type=reset], [type=submit] {
     -webkit-appearance: button
 }
 
-iframe {
-    border: none;
-    height: 100%;
-    width: 100%
-}
+
 
 .mud-elevation-0 {
     box-shadow: var(--mud-elevation-0)
