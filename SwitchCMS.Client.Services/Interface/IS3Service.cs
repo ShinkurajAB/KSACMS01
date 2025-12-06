@@ -11,5 +11,7 @@ namespace SwitchCMS.Client.Services.Interface
         Task<bool> UploadFile(Stream stream, string fileName, string contentType, string CompanyID);
         Task<bool> DeleteFileAsync(string filepath, string CompanyID);
         Task<bool> FIleExistorNot(string CompanyID, string fileName);
+
+        Task<byte[]> DownloadFile(string filepath, string CompanyID);
     }
 }

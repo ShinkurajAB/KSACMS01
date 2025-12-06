@@ -105,5 +105,29 @@ namespace SwitchCMS.Client.Services
                 return false;
             }
         }
+
+        public async Task<byte[]> DownloadFile(string filepath, string CompanyID)
+        {
+            try
+            {
+                var request = new Amazon.S3.Model.GetObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = $"{FilePath}{CompanyID}/{filepath}"
+                };
+
+                using (var response = await s3Client.GetObjectAsync(request))
+                using (var memory = new MemoryStream())
+                {
+                    await response.ResponseStream.CopyToAsync(memory);
+                    return memory.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error if needed
+                return null; // file not found or error
+            }
+        }
     }
 }

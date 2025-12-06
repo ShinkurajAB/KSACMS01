@@ -14,8 +14,10 @@ namespace SwitchCMS.Repository.Interface
         Task<bool> UpdateEmployee(OHEM modal);
         Task<bool> DeleteEmployee(int empId);        
         Task<List<OHEM>> GetAllEmployeesByCompanyId(EmployeePagination pagination);
-        Task<int> GetTotalEmployeeCount();
+        Task<int> GetTotalEmployeeCount(int companyId);
         Task<List<OHEM>> GetEmployeesByIqamaId(string iqamaId);
         Task<List<OHEM>> GetEmployeesByEmail(string email);
+        Task<List<OHEM>> GetAllEmployessByCompany(int companyId);
+        Task<bool> UpdateEmployeeStatus(int empId, bool status);
     }
 }

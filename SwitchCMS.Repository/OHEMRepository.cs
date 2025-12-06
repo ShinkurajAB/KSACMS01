@@ -70,6 +70,15 @@ namespace SwitchCMS.Repository
             return empDic.Values.ToList();
         }
 
+        public async Task<List<OHEM>> GetAllEmployessByCompany(int companyId)
+        {
+            string SqlQuery = "select * from OHEM WHERE CompanyID=@CompanyID";
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CompanyID", companyId);
+            var Data = await DbContext.QueryAsync<OHEM>(SqlQuery, parameters);
+            return Data.ToList();
+        }
+
         public async Task<List<OHEM>> GetEmployeesByEmail(string email)
         {
             string SqlQuery = "select * from OHEM WHERE Email=@Email";
@@ -88,10 +97,11 @@ namespace SwitchCMS.Repository
             return Data.ToList();
         }
 
-        public async Task<int> GetTotalEmployeeCount()
+        public async Task<int> GetTotalEmployeeCount(int companyId)
         {
-            string SqlQuery = @"SELECT Count(ID) FROM OHEM";
+            string SqlQuery = @"SELECT Count(ID) FROM OHEM Where CompanyID=@CompanyID";
             DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("CompanyID", companyId);
             int TotalCount = await DbContext.QuerySingleAsync<int>(SqlQuery, parameters);
             return TotalCount;
         }
@@ -248,6 +258,18 @@ namespace SwitchCMS.Repository
             {
                                throw;
             }
+        }
+
+        public async Task<bool> UpdateEmployeeStatus(int empId, bool status)
+        {
+            string sqlQuery = @"UPDATE OHEM
+                                SET EmployeeStatus=@EmployeeStatus
+                                   WHERE ID=@ID";
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("EmployeeStatus", status);
+            parameters.Add("ID", empId);
+            int Success = await DbContext.ExecuteAsync(sqlQuery, parameters);
+            return Success > 0;
         }
     }
 }

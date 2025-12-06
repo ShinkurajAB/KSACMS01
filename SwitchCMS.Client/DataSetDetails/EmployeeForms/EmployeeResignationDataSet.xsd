@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeResignationDataSet" targetNamespace="http://tempuri.org/EmployeeResignationDataSet.xsd" xmlns:mstns="http://tempuri.org/EmployeeResignationDataSet.xsd" xmlns="http://tempuri.org/EmployeeResignationDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeResignationDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="EmployeeResignationDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeResignationDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dsEmployeeResignation" msprop:Generator_RowClassName="dsEmployeeResignationRow" msprop:Generator_RowEvHandlerName="dsEmployeeResignationRowChangeEventHandler" msprop:Generator_RowDeletedName="dsEmployeeResignationRowDeleted" msprop:Generator_RowDeletingName="dsEmployeeResignationRowDeleting" msprop:Generator_RowEvArgName="dsEmployeeResignationRowChangeEvent" msprop:Generator_TablePropName="dsEmployeeResignation" msprop:Generator_RowChangedName="dsEmployeeResignationRowChanged" msprop:Generator_UserTableName="dsEmployeeResignation" msprop:Generator_RowChangingName="dsEmployeeResignationRowChanging" msprop:Generator_TableClassName="dsEmployeeResignationDataTable" msprop:Generator_TableVarName="tabledsEmployeeResignation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeId" msprop:Generator_UserColumnName="EmployeeId" msprop:Generator_ColumnPropNameInTable="EmployeeIdColumn" msprop:Generator_ColumnPropNameInRow="EmployeeId" msprop:Generator_ColumnVarNameInTable="columnEmployeeId" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyId" msprop:Generator_UserColumnName="CompanyId" msprop:Generator_ColumnPropNameInTable="CompanyIdColumn" msprop:Generator_ColumnPropNameInRow="CompanyId" msprop:Generator_ColumnVarNameInTable="columnCompanyId" type="xs:string" minOccurs="0" />
+              <xs:element name="SubmissionDate" msprop:Generator_UserColumnName="SubmissionDate" msprop:Generator_ColumnPropNameInTable="SubmissionDateColumn" msprop:Generator_ColumnPropNameInRow="SubmissionDate" msprop:Generator_ColumnVarNameInTable="columnSubmissionDate" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_UserColumnName="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" type="xs:string" minOccurs="0" />
+              <xs:element name="LastWorkingDay" msprop:Generator_UserColumnName="LastWorkingDay" msprop:Generator_ColumnPropNameInTable="LastWorkingDayColumn" msprop:Generator_ColumnPropNameInRow="LastWorkingDay" msprop:Generator_ColumnVarNameInTable="columnLastWorkingDay" type="xs:string" minOccurs="0" />
+              <xs:element name="CreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_UserColumnName="CreatedDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

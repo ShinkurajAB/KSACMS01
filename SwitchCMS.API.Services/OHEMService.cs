@@ -83,12 +83,17 @@ namespace SwitchCMS.API.Services
             return result;
         }
 
+        public async Task<List<OHEM>> GetAllEmployessByCompany(int companyId)
+        {
+            return await employeeRepository.GetAllEmployessByCompany(companyId);
+        }
+
         public async Task<EmployeePagination> GetEmployeeByPagination(EmployeePagination pagination)
         {
             if (pagination.PageIndex > 0)
                 pagination.PageIndex--;
             pagination.EmployeeList = await employeeRepository.GetAllEmployeesByCompanyId(pagination);
-            pagination.TotalCount = await employeeRepository.GetTotalEmployeeCount();
+            pagination.TotalCount = await employeeRepository.GetTotalEmployeeCount(pagination.CompanyId);
             pagination.PageIndex++;
 
             if (pagination.TotalCount == pagination.RowCount)

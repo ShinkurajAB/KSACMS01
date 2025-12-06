@@ -27,14 +27,18 @@ namespace SwitchCMS.Utility
         public const string EmployeeBulkRegistration = "/Employee-bulkregistration";
         public const string EmployeeLeave = "/Employee-leave";
         public const string EmployeeIqamaRenewal = "/Employee-iqamaRenewal";
+        public const string EmployeeResignation = "/Form-resignation";
+        public const string EmployeeDirectNotification = "/Employee-directNotification";
+        public const string EmployeeAbsentee = "/Form-absentee";
+        public const string EmployeeOfferLetter = "/Form-offerletter";
 
         #region Vehicle 
         public const string VehicleManagement = "/Vehicle-management";
         public const string VehicleMaintanance = "/Vehicle-maintanance";
         public const string VehicleHandover = "/Vehicle-handover";
         #endregion
-        public const string FormRegistration = "/Form-registration";
-        
+       
+
         public const string FormFinancialPledge = "/Form-financialpledge";
         public const string FormSalaryDefinition = "/Form-salaryDefinition";
 
@@ -47,6 +51,9 @@ namespace SwitchCMS.Utility
 
         #region Print Urls
         public const string PrintVehicleHandover = "api/VehicleForm/VehicleHandoverForms";
+        public const string PrintEmployeeResignation = "api/EmployeeForms/GetResignationForms";
+        public const string PrintEmployeeAbsentee = "api/EmployeeForms/GetAbsenceForms";
+        public const string PrintOfferLetter = "api/EmployeeForms/GetOfferLetterForms";
         #endregion
     }
 }

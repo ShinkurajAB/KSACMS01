@@ -19,7 +19,7 @@ namespace SwitchCMS.Client.Services
             public static string GetLoginDetails() => $"/api/Users/GetLoginUserDetails";
             public static string GetUserByPageIndex() => $"/api/Users/GetUsersByPageIndex";
             public static string CreateUser() => $"/api/Users/CreeateUpdateUser";
-            public static string DeleteUserByUserID(int UserID) => $"/api/Users/DeleteUser?UserID={ UserID }";
+            public static string DeleteUserByUserID(int UserID) => $"/api/Users/DeleteUser?UserID={UserID}";
         }
 
         public class OCMPUrls
@@ -57,6 +57,7 @@ namespace SwitchCMS.Client.Services
             public static string GetEmployeeByPagination() => "/api/Employee/GetEmployeeByPagination";
             public static string DeleteEmployee(int empId) => $"/api/Employee/DeleteEmployee?employeeId={empId}";
             public static string EmployeeBulkUpload() => "/api/Employee/EmployeeBulkUpload";
+            public static string GetAllEmployessByCompany(int companyId) => $"/api/Employee/GetAllEmployessByCompany?companyId={companyId}";
         }
 
         public class OADVUrls
@@ -75,8 +76,8 @@ namespace SwitchCMS.Client.Services
             public static string GetVehicleByPageIndex() => $"/api/Vehicle/GetVehicleByPageIndex";
             public static string GetVehicleByID(int ID) => $"/api/Vehicle/GetVehicleByID?VehcileID={ID}";
             public static string UpdateVehicle() => $"/api/Vehicle/UpdateVehicle";
-            public static string DeleteVehicle(int ID) => $"/api/Vehicle/DeleteVehicle?VehicleID={ID}";     
-            
+            public static string DeleteVehicle(int ID) => $"/api/Vehicle/DeleteVehicle?VehicleID={ID}";
+
         }
 
         public class OATCUrl
@@ -95,6 +96,39 @@ namespace SwitchCMS.Client.Services
             public static string GetHandoverByID(int ID) => $"/api/VehicleHandover/GetHandoverByID?HandoverID={ID}";
             public static string UpdateHandover() => $"/api/VehicleHandover/UpdateHandover";
             public static string DeleteHandover(int ID) => $"/api/VehicleHandover/DeleteHandover?HandoverID={ID}";
+        }
+        public class HEM1Url
+        {
+            public static string InsertResignation() => "/api/EmployeeResignation/InsertResignation";
+            public static string UpdateResignation() => "/api/EmployeeResignation/UpdateResignation";
+            public static string GetResignationsByPagination() => "/api/EmployeeResignation/GetEmployeeResignationsByPagination";
+            public static string DeleteResignation(int resigId) => $"/api/EmployeeResignation/DeleteResignation?resignationId={resigId}";
+            public static string GetResignationById(int resigId) => $"/api/EmployeeResignation/GetResignationById?Id={resigId}";
+        }
+
+        public class HEM2Url
+        {
+            public static string CreateDirectNotification() => "/api/VehicleHandover/CreateHandover";
+            public static string GetDirectNotificationByPageIndex() => $"/api/VehicleHandover/GetHandoverByPageIndex";
+            public static string GetDirectNotificationByID(int ID) => $"/api/VehicleHandover/GetHandoverByID?HandoverID={ID}";
+            public static string UpdateDirectNotification() => $"/api/VehicleHandover/UpdateHandover";
+            public static string DeleteDirectNotification(int ID) => $"/api/VehicleHandover/DeleteHandover?HandoverID={ID}";
+        }
+        public class HEM3Url
+        {
+            public static string InsertAbsentee() => "/api/EmployeeAbsence/InsertAbsentee";
+            public static string UpdateAbsentee() => "/api/EmployeeAbsence/UpdateAbsentee";
+            public static string GetAbsenteesByPagination() => "/api/EmployeeAbsence/GetAbsenteesByPagination";
+            public static string DeleteAbsentee(int absenteeId) => $"/api/EmployeeAbsence/DeleteAbsentee?absenteeId={absenteeId}";
+            public static string GetAbsenteeById(int id) => $"/api/EmployeeAbsence/GetAbsenteeById?Id={id}";
+        }
+        public class HEM4Url
+        {
+            public static string InsertOfferLetter() => "/api/OfferLetter/InsertOfferLetter";
+            public static string UpdateOfferLetter() => "/api/OfferLetter/UpdateOfferLetter";
+            public static string GetOfferLetterByPagination() => "/api/OfferLetter/GetOfferLetterByPagination";
+            public static string DeleteOfferLetter(int offerId) => $"/api/OfferLetter/DeleteOfferLetter?offerId={offerId}";
+            public static string GetOfferLetterById(int id) => $"/api/OfferLetter/GetOfferLetterById?Id={id}";
         }
     }
 }

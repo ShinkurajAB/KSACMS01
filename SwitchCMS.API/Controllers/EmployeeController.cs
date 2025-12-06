@@ -99,6 +99,21 @@ namespace SwitchCMS.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetAllEmployessByCompany(int companyId)
+        {
+            try
+            {
 
+                var data = await EmployeeService.GetAllEmployessByCompany(companyId);
+                return Ok(data);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

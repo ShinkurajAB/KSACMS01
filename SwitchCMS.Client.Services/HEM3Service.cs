@@ -5,7 +5,6 @@ using SwitchCMS.Model;
 using SwitchCMS.Model.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
@@ -15,22 +14,22 @@ using System.Threading.Tasks;
 
 namespace SwitchCMS.Client.Services
 {
-    public class OHEMService:IOHEMService
+    public class HEM3Service:IHEM3Service
     {
         private readonly IConfiguration _configuration;
         private HttpClient _httpClient = new HttpClient();
-        public OHEMService(IConfiguration configuration)
+        public HEM3Service(IConfiguration configuration)
         {
             _configuration = configuration;
             _httpClient.BaseAddress = new Uri(_configuration.GetSection(APIServiceURLs.BaseAddressSection).Value!);
         }
 
-        public async Task<bool> DeleteEmployee(int empId, string token)
+        public async Task<bool> DeleteAbsentee(int id, string token)
         {
             try
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var result = await _httpClient.PutAsJsonAsync(APIServiceURLs.OHEMUrls.DeleteEmployee(empId), "");
+                var result = await _httpClient.PutAsJsonAsync(APIServiceURLs.HEM3Url.DeleteAbsentee(id), "");
                 string apiResponse = await result.Content.ReadAsStringAsync();
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
@@ -55,78 +54,17 @@ namespace SwitchCMS.Client.Services
             }
         }
 
-        public async Task<List<OHEM>> EmployeeBulkUpload(List<OHEM> employeeList, string token)
-        {
-            try
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var result = await _httpClient.PostAsJsonAsync(APIServiceURLs.OHEMUrls.EmployeeBulkUpload(), employeeList);
-                string apiResponse = await result.Content.ReadAsStringAsync();
-                if (result.StatusCode == HttpStatusCode.OK)
-                {
-                    return JsonConvert.DeserializeObject<List<OHEM>>(apiResponse)!;
-                }
-                else if (result.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    Console.WriteLine("Error:" + apiResponse);
-                    return new List<OHEM>();
-                }
-                else
-                {
-                    Console.WriteLine("Unknown Error");
-                    return new List<OHEM>();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<OHEM>();
-            }
-        }
-
-        public async Task<List<OHEM>> GetAllEmployessByCompany(int companyId, string token)
-        {
-
-            try
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var result = await _httpClient.GetAsync(APIServiceURLs.OHEMUrls.GetAllEmployessByCompany(companyId));
-                string apiResponse = await result.Content.ReadAsStringAsync();
-                if (result.StatusCode == HttpStatusCode.OK)
-                {
-                    return JsonConvert.DeserializeObject<List<OHEM>>(apiResponse)!;
-                }
-                else if (result.StatusCode == HttpStatusCode.BadRequest)
-                {
-                    Console.WriteLine("Error:" + apiResponse);
-                    return new List<OHEM>();
-                }
-                else
-                {
-                    Console.WriteLine("Unknown Error");
-                    return new List<OHEM>();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new List<OHEM>();
-            }
-        }
-
-        public async Task<EmployeePagination> GetEmployeeByPagination(EmployeePagination pagination, string token)
+        public async Task<HEM3> GetAbsenteeById(int id, string token)
         {
             try
             {
                 string apiResponse = String.Empty;
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(APIServiceURLs.AuthScheme, token);
-                var result = await _httpClient.PostAsJsonAsync<EmployeePagination>(APIServiceURLs.OHEMUrls.GetEmployeeByPagination(), pagination);
+                var result = await _httpClient.GetAsync(APIServiceURLs.HEM3Url.GetAbsenteeById(id));
                 apiResponse = await result.Content.ReadAsStringAsync();
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return JsonConvert.DeserializeObject<EmployeePagination>(apiResponse)!;
+                    return JsonConvert.DeserializeObject<HEM3>(apiResponse)!;
                 }
                 else if (result.StatusCode == HttpStatusCode.BadRequest)
                 {
@@ -145,56 +83,85 @@ namespace SwitchCMS.Client.Services
             }
         }
 
-        public async Task<bool> InsertEmployee(OHEM modal, string token)
+        public async Task<EmployeeAbsencePagination> GetAbsenteesByCompanyId(EmployeeAbsencePagination pagination, string token)
         {
             try
             {
-
-                var result = await _httpClient.PostAsJsonAsync<OHEM>(APIServiceURLs.OHEMUrls.InsertEmployee(), modal);
-                string apiResponse = await result.Content.ReadAsStringAsync();
+                string apiResponse = String.Empty;
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(APIServiceURLs.AuthScheme, token);
+                var result = await _httpClient.PostAsJsonAsync<EmployeeAbsencePagination>(APIServiceURLs.HEM3Url.GetAbsenteesByPagination(), pagination);
+                apiResponse = await result.Content.ReadAsStringAsync();
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return Convert.ToBoolean(apiResponse);
+                    return JsonConvert.DeserializeObject<EmployeeAbsencePagination>(apiResponse)!;
                 }
                 else if (result.StatusCode == HttpStatusCode.BadRequest)
                 {
-                    Console.WriteLine("Error:" + apiResponse);
-                    return false;
+                    return new();
                 }
                 else
                 {
-                    Console.WriteLine("Unknown Error");
-                    return false;
-
+                    Console.WriteLine("Unknown Error" + apiResponse);
+                    return new();
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unknown Error" + ex.Message);
+                return new();
+            }
         }
 
-        public async Task<bool> UpdateEmployee(OHEM modal, string token)
+        public async Task<ModificationStatus> InsertAbsentee(HEM3 modal, string token)
         {
             try
             {
 
-                var result = await _httpClient.PostAsJsonAsync<OHEM>(APIServiceURLs.OHEMUrls.UpdateEmployee(), modal);
+                var result = await _httpClient.PostAsJsonAsync<HEM3>(APIServiceURLs.HEM3Url.InsertAbsentee(), modal);
                 string apiResponse = await result.Content.ReadAsStringAsync();
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return Convert.ToBoolean(apiResponse);
+                    return JsonConvert.DeserializeObject<ModificationStatus>(apiResponse)!;
                 }
                 else if (result.StatusCode == HttpStatusCode.BadRequest)
                 {
                     Console.WriteLine("Error:" + apiResponse);
-                    return false;
+                    return new ModificationStatus();
                 }
                 else
                 {
                     Console.WriteLine("Unknown Error");
-                    return false;
+                    return new ModificationStatus();
 
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return new ModificationStatus(); }
+        }
+
+        public async Task<ModificationStatus> UpdateAbsentee(HEM3 modal, string token)
+        {
+            try
+            {
+
+                var result = await _httpClient.PostAsJsonAsync<HEM3>(APIServiceURLs.HEM3Url.UpdateAbsentee(), modal);
+                string apiResponse = await result.Content.ReadAsStringAsync();
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    return JsonConvert.DeserializeObject<ModificationStatus>(apiResponse)!;
+                }
+                else if (result.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    Console.WriteLine("Error:" + apiResponse);
+                    return new ModificationStatus();
+                }
+                else
+                {
+                    Console.WriteLine("Unknown Error");
+                    return new ModificationStatus();
+
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return new ModificationStatus(); }
         }
     }
 }

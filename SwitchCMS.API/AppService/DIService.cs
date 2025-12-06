@@ -130,10 +130,24 @@ namespace SwitchCMS.API.AppService
             // Document 
             builder.Services.AddScoped<IOATCRepository, OATCRepository>();
             builder.Services.AddScoped<IOATCService, OATCService>();
+            //Employee Resignation
+            builder.Services.AddScoped<IHEM1Repository, HEM1Repository>();
+            builder.Services.AddScoped<IHEM1Service, HEM1Service>();
 
             // vehicle Handover 
             builder.Services.AddScoped<IVHL1Repository, VHL1Repository>();
             builder.Services.AddScoped<IVHL1Service, VHL1Service>();
+            //Employee Absentee
+            builder.Services.AddScoped<IHEM3Repository, HEM3Repository>();
+            builder.Services.AddScoped<IHEM3Service, HEM3Service>();
+            //Offer Letter
+            builder.Services.AddScoped<IHEM4Repository, HEM4Repository>();
+            builder.Services.AddScoped<IHEM4Service, HEM4Service>();
+
+            // Employee Direct Notification
+            builder.Services.AddScoped<IHEM2Repository, HEM2Repository>();
+            builder.Services.AddScoped<IHEM2Service, HEM2Service>();
+
 
         }
 

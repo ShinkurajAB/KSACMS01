@@ -15,5 +15,6 @@ namespace SwitchCMS.API.Services.Interface
         Task<bool> DeleteEmployee(int empId);
         Task<EmployeePagination> GetEmployeeByPagination(EmployeePagination pagination);
         Task<List<OHEM>> EmployeeBulkUpload(List<OHEM> employeeList);
+        Task<List<OHEM>> GetAllEmployessByCompany(int companyId);
     }
 }

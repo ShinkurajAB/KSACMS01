@@ -108,7 +108,7 @@ namespace SwitchCMS.Repository
             {
                 throw ex;
             }
-            throw new NotImplementedException();
+             
         }
 
         public async Task<bool> UpdateHandover(VHL1 Model)
