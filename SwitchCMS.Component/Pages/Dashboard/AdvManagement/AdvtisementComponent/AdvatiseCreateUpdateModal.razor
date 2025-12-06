@@ -19,194 +19,75 @@
 
                     <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
                         <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Name
-                            </label>
-                            <input type="text" placeholder="Name" value="Abdulla" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">Select Image</label>
+                            
+                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Accept="image/jpeg, image/png">
+                                <ActivatorContent>
+                                    <MudButton Variant="Variant.Filled"
+                                               Color="Color.Primary"
+                                               StartIcon="@Icons.Material.Filled.CloudUpload">
+                                        Upload Files
+                                    </MudButton>
+                                </ActivatorContent>
+                            </MudFileUpload>
+                            <p style="color:red">@UploadImageError</p>
                         </div>
                         <div class="modal-form-group">
                             <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Job Title
+                                Start Date
                             </label>
-                            <input type="text" placeholder="Job Title" value="Manager" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                            <input type="date" placeholder="Start Date" 
+                                   @bind="Advatisement.StartDate" 
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                        
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                End Date
+                            </label>
+                            <input type="date" placeholder="Start Date"
+                                   @bind="Advatisement.EndDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+                        
+                        
                         </div>
                         <div class="modal-form-group">
                             <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Project Name
+                                Select Companys
                             </label>
-                            <input type="text" placeholder="Project Name" value="C122Name" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                            <CompanyMultiSelection ParmSelectedCompanys="SelectedCompany" SelectedCompanyCallBack="SelectedCompanyList"></CompanyMultiSelection>
                         </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                E-mail
-                            </label>
-                            <input type="email" placeholder="E-mail" value="shinku@gmail.com" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
+
 
                         <div class="modal-form-group">
                             <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Passport Number
+                                Status
                             </label>
-                            <input type="text" placeholder="Passport Number" value="UTIB0000485" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Date of Birth
-                            </label>
-                            <input type="date" placeholder="Date of Birth" value="02-06-1991" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Mobile Number
-                            </label>
-                            <input type="number" placeholder="Mobile Number" value="9605120391" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
+                            <select @bind="Advatisement.ImageStatus"
+                                class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+                                
+                                @foreach (var item in Enum.GetValues(typeof(Utility.Status)).Cast<Utility.Status>())
+                                {
+                                    <option value="@item" class="text-gray-700">
+                                        @item.ToString()
+                                    </option>
+                                }
 
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Gender
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    Select Gender
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Male
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Female
-                                </option>
+                               
+                               
                             </select>
                         </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Country
-                            </label>
-                            <input type="text" placeholder="" value="" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Iqama ID
-                            </label>
-                            <input type="number" placeholder="Iqama ID" value="111222" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Employee Status
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    Active
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Inactive
-                                </option>
-                            </select>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Contract Type
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    None
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Seasonal
-                                </option>
-                            </select>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Sponsor
-                            </label>
-                            <input type="text" placeholder="Sponsor" value="Shaja" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                National Unified No
-                            </label>
-                            <input type="text" placeholder="National Unified No" value="No" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Joining Date
-                            </label>
-                            <input type="date" placeholder="Joining Date" value="02-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Bank Account
-                            </label>
-                            <input type="text" placeholder="Bank Account" value="123123123123" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Contract End Date
-                            </label>
-                            <input type="text" placeholder="Contract End Date" value="02-12-2027" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Contract Status
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    Active
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Inactive
-                                </option>
-                            </select>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Iqama Expiry Date
-                            </label>
-                            <input type="date" placeholder="Iqama Expiry Date" value="02-12-2026" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Insurance Company Name
-                            </label>
-                            <input type="text" placeholder="Insurance Company Name" value="PCM Associates" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Insurance Start Date
-                            </label>
-                            <input type="date" placeholder="Insurance Start Date" value="07-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Insurance Expiration Date
-                            </label>
-                            <input type="date" placeholder="" value="07-11-2025" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Insurance Status
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    Active
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Inactive
-                                </option>
-                            </select>
-                        </div>
+                        
                     </div>
 
 
                 </div>
                 <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end border-t border-gray-200 pt-4">
-                    <button onclick="hideCreateNewDataPopUP()" type="button" class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50  sm:w-auto">
+                    <button @onclick="HideAdvatiseModal" type="button" class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50  sm:w-auto">
                         Close
                     </button>
-                    <button type="button" class="flex w-full justify-center rounded-lg main-bg-dark-color px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto">
+                    <button @onclick="CreateAdvatisement" type="button" class="flex w-full justify-center rounded-lg main-bg-dark-color px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto">
                         Save Changes
                     </button>
                 </div>

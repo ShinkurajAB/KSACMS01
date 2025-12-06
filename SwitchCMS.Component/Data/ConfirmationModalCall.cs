@@ -11,13 +11,13 @@ namespace SwitchCMS.Component.Data
     {
         public static async void ShowModal(IJSRuntime JS)
         {
-            await JS.InvokeVoidAsync("ShowDeleteConfirmationModal");
+            await JS.InvokeVoidAsync("showDeleteConfirmModal");
         }
 
 
         public static async void HideModal(IJSRuntime JS)
         {
-            await JS.InvokeVoidAsync("HideDeleteConfirmationModal");
+            await JS.InvokeVoidAsync("closeDeleteConfirmModal");
         }
     }
 }
