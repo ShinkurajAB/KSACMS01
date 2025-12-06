@@ -1,0 +1,20 @@
+﻿ @using SwitchCMS.Model;
+
+@if (CompanyList?.Any() == true)
+{
+    <Blazored.Typeahead.BlazoredTypeahead TItem="OCMP" TValue="OCMP"
+                                           
+                                          SearchMethod="AutoSearchBP"
+                                          @bind-Values="SelectedCompany"
+                                          @bind-Values:after="() => OnSelectedCompanyChanged()"
+                                          Placeholder="Enter Customer Name">
+
+        <SelectedTemplate Context="Bp">
+            @Bp.Name
+        </SelectedTemplate>
+
+        <ResultTemplate Context="Bp">
+            <b>@Bp.Name</b> - @Bp.ID
+        </ResultTemplate>
+    </Blazored.Typeahead.BlazoredTypeahead>
+}

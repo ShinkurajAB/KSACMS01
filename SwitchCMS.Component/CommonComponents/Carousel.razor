@@ -1,0 +1,24 @@
+﻿@if (AdvatisementList != null)
+{
+    @if (AdvatisementList.Count > 0)
+    {
+        <MudCarousel Class="mud-width-full" Style="height:300px !important;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true" AutoCycle="true" TData="object">
+            @foreach (var item in AdvatisementList)
+            {
+
+
+                string ImageUrl = UrlBasePath + FilePath + FolderPath + "/" + item.ImagePath;
+
+
+                <MudCarouselItem Transition="@Transition.Slide">
+                    <div class="d-flex" style="height:100%">
+                        <img src="@ImageUrl" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="Banner 1">
+                    </div>
+                </MudCarouselItem>
+            }
+
+
+
+        </MudCarousel>
+    }
+}

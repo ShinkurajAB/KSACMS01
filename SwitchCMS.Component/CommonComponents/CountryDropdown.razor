@@ -1,0 +1,23 @@
+﻿@using SwitchCMS.Model
+
+@if (countryList != null)
+{
+    <MudAutocomplete T="OCRY"
+                     Value="SelectedCountry"
+                     Dense="true"
+                     Clearable="true"
+                     ResetValueOnEmptyText="false"
+                     MaxLength="20"
+                     CoerceText="true"
+                     CoerceValue="true"
+                     MinCharacters="0"
+                     SelectValueOnTab="true"
+                     ToStringFunc="c => c?.CountryName ?? string.Empty"
+                     ValueChanged="OnCountrySelected"
+                     SearchFunc="FilterCountry"
+                     Label="Country"
+                     Variant="Variant.Outlined">
+
+    </MudAutocomplete>
+
+}

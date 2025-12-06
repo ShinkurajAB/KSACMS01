@@ -234,3 +234,23 @@ window.attachmentAccordion = function () {
     });
 };
 
+// Create Advatise Modal
+
+function CreateAdvatiseModal() {
+
+    const Modal = document.getElementById("addAdModal");
+    const popup = document.getElementById("ModalContaner");
+    Modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+
+     
+}
+
+function HideAdvatiseModal() {
+    const Modal = document.getElementById("addAdModal");
+    Modal.classList.add("hidden");
+
+    
+}
