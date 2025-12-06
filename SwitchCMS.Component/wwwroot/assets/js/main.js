@@ -254,3 +254,37 @@ function HideAdvatiseModal() {
 
     
 }
+
+
+
+//Download 
+function DownLoadFile(mimeType, Base64String, fileName) {
+    var fileDataUrl = "data:" + mimeType + "; base64," + Base64String;
+    fetch(fileDataUrl).then(response => response.blob())
+        .then(blob => {
+            var link = window.document.createElement("a");
+            link.href = window.URL.createObjectURL(blob, { type: mimeType });
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+}
+
+
+
+// Document Modal
+function CreateDocumentModal() {
+    const modal = document.getElementById("addDocModal");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+
+function HideDocumentModal() {
+    const Modal = document.getElementById("addDocModal");
+    Modal.classList.add("hidden");
+}
