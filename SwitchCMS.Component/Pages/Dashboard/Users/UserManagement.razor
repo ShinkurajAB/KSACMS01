@@ -13,10 +13,11 @@
     </button>
 </div>
 
-<div class=" rounded-xl border border-gray-200 ">
+
 
     @if (Pagination.UserList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 ">
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -113,15 +114,18 @@
 
             </tbody>
         </table>
-
+    </div>
+    <div class="flex justify-center mt-5">
         <PaginationComponent selected="@Pagination.PageIndex"
                              TotalCount="@Pagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+    </div>
+     
     }
 
    
 
-    </div>
+
 
 
 

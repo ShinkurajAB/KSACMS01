@@ -3360,7 +3360,8 @@ button, [type=button], [type=reset], [type=submit] {
     bottom: 0px;
     margin: inherit;
     padding: inherit;
-    z-index: 2
+    z-index: 2;
+    border-radius:10px;
 }
 
     .mud-carousel-item.mud-carousel-item-primary {
