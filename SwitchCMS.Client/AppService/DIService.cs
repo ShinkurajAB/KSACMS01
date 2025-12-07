@@ -28,6 +28,9 @@ namespace SwitchCMS.Client.AppService
             builder.Services.AddScoped<IOATCService, OATCService>();
 
             builder.Services.AddScoped<IVHL1Service, VHL1Service>();
+            builder.Services.AddScoped<IHEM1Service, HEM1Service>();
+            builder.Services.AddScoped<IHEM3Service, HEM3Service>();
+            builder.Services.AddScoped<IHEM4Service, HEM4Service>();
         }
     }
 }
