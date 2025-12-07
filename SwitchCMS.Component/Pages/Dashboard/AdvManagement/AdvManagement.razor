@@ -16,10 +16,11 @@
 
 
 
-<div class=" rounded-xl border border-gray-200 ">
+
 
     @if (pagination.AdvatisementList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 " >
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -43,8 +44,8 @@
                             string ImageUrl = UrlBasePath + FilePath + FolderPath + "/" + item.ImagePath;
                         }
                         <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.ID</td>
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white"><img src="@ImageUrl" style="width: 100px; height:100px !important;"></th>
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white"><a href="@ImageUrl" target="_blank">@item.ImagePath</a></th>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white"><img src="@ImageUrl" class="w-14 h-14 rounded-md"></td>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white"><a class="text-blue-700" href="@ImageUrl" target="_blank">@item.ImagePath</a></td>
 
                         <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
                             @if (item.ImageStatus == Utility.Status.Active)
@@ -84,14 +85,18 @@
 
             </tbody>
         </table>
+
+    </div>
+    <div class="flex justify-center mt-5">
         <PaginationComponent selected="@pagination.PageIndex"
                              TotalCount="@pagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+    </div>
+
     }
 
    
 
-</div>
 
 <SwitchCMS.Component.Pages.Dashboard.AdvManagement.AdvtisementComponent.AdvatiseCreateUpdateModal ParamAdID="EditedID" ParmChanged="ModalResponse"/>
 

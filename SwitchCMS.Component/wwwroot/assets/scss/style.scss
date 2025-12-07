@@ -24,6 +24,10 @@ font-family: "Poppins", sans-serif;
 a,button{
   cursor: pointer;
 }
+table {
+    border: 1px solid #c4c4c4;
+}
+
 .login-mian-bg{
  background-image: url("../img/background_anim.gif");
  background-color: #cccccc;
@@ -107,53 +111,90 @@ a,button{
     margin-top: .6em;
   }
 }
-.login-form-group{
-  margin-bottom: 1em;
-  position: relative;
-  width: 100%;
-  label{
-    margin-bottom: 5px;
-    display: block;
-    color: #023161;
-   font-size: .9em;
-    font-weight: 500;
-
-  }
-  input{
-    border: 1px solid #3181c9;
-    padding: 0em 0em 0em 2em;
+.login-form-group {
+    margin-bottom: 1em;
+    position: relative;
     width: 100%;
+
+    label {
+        margin-bottom: 5px;
+        display: block;
+        color: #023161;
+        font-size: .9em;
+        font-weight: 500;
+    }
+
+    input {
+        border: 1px solid #3181c9;
+        padding: 0em 0em 0em 2em;
+        width: 100%;
+        border-radius: 4em;
+        width: 100%;
+        height: 2.7em;
+        background: #f1f1f1;
+
+        &::placeholder {
+            font-size: .8em;
+        }
+
+        &:focus, :focus-visible {
+            border: 1px solid #033263;
+            box-shadow: rgb(4 51 100 / 52%) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+            outline: 0;
+        }
+    }
+
+
+
+    .pass-eye-btn {
+        position: absolute;
+        right: 7px;
+        top: 39px;
+
+        svg {
+            color: #3385ce;
+        }
+    }
+
+    .login-name-icon {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 39px;
+        left: 10px;
+        color: #525252;
+    }
+}
+
+.login-form-group .mud-input-control > .mud-input-control-input-container {
+    background: #fff !important;
     border-radius: 4em;
     width: 100%;
     height: 2.7em;
-    background: #f1f1f1;
-    &::placeholder{
-      font-size: .8em;
-    }
-    &:focus, :focus-visible{
-      border: 1px solid #033263;
-      box-shadow: rgb(4 51 100 / 52%) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-      outline: 0;
-    }
-
-  }
-  .pass-eye-btn{
-    position: absolute;
-    right: 7px;
-    top: 39px;
-    svg{
-    color: #3385ce;
-    }
-  }
-  .login-name-icon{
-     width: 18px;
-    height: 18px;
-    position: absolute;
-    top: 39px;
-    left: 10px;
-    color: #525252;
-  }
-  
+    /*background: #f1f1f1;*/
+    border: 1px solid #3181c9;
+}
+.login-form-group .mud-input-control.mud-input-outlined-with-label {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.login-form-group .mud-input {
+    width: 100%;
+    height: 2.7em;
+    /*background: #f1f1f1;*/
+    border: 1px solid #3181c9;
+    background: #fff !important;
+    border-radius: 4em;
+}
+.login-form-group .mud-input.mud-input-outlined .mud-input-outlined-border {
+ 
+    display: none;
+}
+.login-form-group .mud-select .mud-select-input .mud-input-slot {
+    font-size: 15px;
+}
+.login-form-group  .mud-select .mud-select-input .mud-input-slot:focus {
+   box-shadow:none;
 }
 .file_head_show_span{
    margin-bottom: 2px;
@@ -173,6 +214,9 @@ color: #023161;
 }
 .main-bg-dark-color{
   background-color: $main-dark-color;
+}
+.main-bg-light-color {
+    background-color: rgb(203, 231, 255);
 }
 /*------------Custom Check box------------------------*/
   .checkbox-wrapper-15 .cbx {
@@ -381,7 +425,7 @@ color: #023161;
   transition: max-height 0.35s ease;
 }
 .submenu.open {
-  max-height: 300px;
+  max-height: 500px;
 }
 /*--------------Dropdown-------------------*/
 .userdetailmenuBox {
@@ -459,4 +503,11 @@ color: #023161;
             border: 1px solid $main-dark-color;
         }
     }
+}
+/*--------------Carousel---------------------*/
+.carousel-image {
+    width: 100%;
+    border: 1px solid #02347a;
+    object-fit: contain;
+    border-radius: 10px;
 }
