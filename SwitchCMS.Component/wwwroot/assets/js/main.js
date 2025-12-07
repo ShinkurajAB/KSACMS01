@@ -288,3 +288,66 @@ function HideDocumentModal() {
     const Modal = document.getElementById("addDocModal");
     Modal.classList.add("hidden");
 }
+
+
+// Employee Absentee Modal
+function CreateEmployeeAbsenteeModal() {
+    const modal = document.getElementById("addEmployeeAbsentee");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+   
+}
+
+function HideEmployeeAbsenteeModal() {
+    const Modal = document.getElementById("addEmployeeAbsentee");
+    Modal.classList.add("hidden");
+}
+
+
+// Employee Resignation Modal
+function CreateEmployeeResignationModal() {
+    const modal = document.getElementById("addEmployeeResignation1");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+
+function HideEmployeeResignationModal() {
+    const Modal = document.getElementById("addEmployeeResignation1");
+    Modal.classList.add("hidden");
+}
+
+
+// Offer Letter Modal
+function CreateOfferLetterModal() {
+    const modal = document.getElementById("addOfferLetter");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+
+function HideOfferLetterModal() {
+    const modal = document.getElementById("addOfferLetter");
+    modal.classList.add("hidden");
+}
+
+//Employee Modal
+function ShowEmployeeModal() {
+    const modal = document.getElementById("employeeModal");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+function HideEmployeeModal() {
+    const modal = document.getElementById("employeeModal");
+    modal.classList.add("hidden");
+}

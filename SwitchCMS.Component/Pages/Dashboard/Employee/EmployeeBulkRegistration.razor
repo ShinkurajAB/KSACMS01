@@ -1,3 +1,88 @@
 ﻿@attribute [Route(Utility.RouteData.EmployeeBulkRegistration)]
 @attribute [Authorize]
 @layout DashboardLayout
+
+
+<div class="flex justify-between items-center  my-4">
+    <h2 class="text-xl font-semibold text-gray-800 ">Employee Bulk Register</h2>
+   
+
+
+    <button @onclick="SampleDownload" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4V12M10 12L6.5 8.5M10 12L13.5 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5 15H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+        Download Template
+    </button>
+
+    <MudFileUpload T="IBrowserFile" FilesChanged="LoadFile">
+        <ActivatorContent>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                Upload Files
+            </MudButton>
+        </ActivatorContent>
+    </MudFileUpload>
+
+    <p style="color:red">@ErrorMessage</p>
+    
+    <button @onclick="BulkUploadEmployees" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Create Employees
+    </button>
+
+</div>
+
+ 
+
+
+<div class=" rounded-xl border border-gray-200 ">
+
+    @if (EmployeeModalList != null)
+    {
+        @if (EmployeeModalList.Count > 0)
+        {
+            <table class="min-w-full text-left text-gray-700 ">
+                <thead class="bg-gray-200 ">
+                    <tr class="border-b border-gray-100">
+
+                        <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Username</th>
+                        <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Company</th>
+                        <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Email</th>
+                        <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Status</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in EmployeeModalList)
+                    {
+                        <tr>
+
+                            <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.Name</td>
+                            <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@loginUserDetails.Company.Name</td>
+                            <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.Email</td>
+                            <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.EmployeeStatus</td>
+
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        }
+
+    }
+
+
+
+</div>
+
+
+<AlertMessage ParmMessage="@AlertMessage" ParmSucessOrFaild="@SuccessOrFaild" />
