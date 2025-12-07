@@ -54,7 +54,17 @@
                         </th>
 
                         <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
-                            @item.EmployeeStatus.ToString()
+
+                            @if (item.EmployeeStatus == Utility.Status.Active)
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
+                            }
+                            else
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
+                            }
+
+                            
                         </th>
 
 

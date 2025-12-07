@@ -2,8 +2,136 @@
 @attribute [Authorize]
 @layout DashboardLayout
 
-<h3>VehicleManagement</h3>
 
-@code {
+<div class="flex justify-between items-center  my-4">
+    <h2 class="text-xl font-semibold text-gray-800 ">>Vehicle Management</h2>
 
-}
+    <button @onclick="CreateOrUpdateModal" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Create Vehicle
+    </button>
+</div>
+
+
+
+
+<div class=" rounded-xl border border-gray-200 ">
+
+    @if (Pagination.VehicleList.Count > 0)
+    {
+        <table class="min-w-full text-left text-gray-700 ">
+            <thead class="bg-gray-200 ">
+                <tr class="border-b border-gray-100">
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">#</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Model</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Owner</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Plate</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Insurance</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Driver</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Phone</th>
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">Insurance Status</th>
+
+                    <th class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-700 ">
+                        Action
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody id="vehicleTable">
+
+                @foreach (var item in Pagination.VehicleList)
+                {
+                    <tr>
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.ID</td>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.VehicleModel
+                        </td>
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.OwnerName
+                        </td>
+
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.PlateNumber
+                        </td>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.InsuranceCompany
+                        </td>
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.DriverName
+                        </td>
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @item.PhoneNumber
+                        </td>
+
+
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                            @if (item.InsuranceStatus == Utility.Status.Active)
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
+                            }
+                            else
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
+                            }
+                        </td>
+
+                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
+                            <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                            </button>
+                            <div class="z-10 dropdown absolute right-2 top-10  bg-white border shadow rounded hidden
+                                                                opacity-0 scale-95 transition-all duration-200">
+                                <button @onclick="() => EditCallModal(item.ID)" class=" flex w-full items-center gap-2 rounded-t-md border-b p-2 hover:bg-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 icon icon-tabler icons-tabler-outline icon-tabler-file-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z" /></svg>
+                                    Edit
+                                </button>
+                                <button @onclick="() => DeleteConfirmModal(item.ID)" class=" flex items-center gap-2 w-full rounded-b-md  p-2 hover:bg-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                                    Delete
+                                </button>
+                            </div>
+
+
+
+                        </td>
+
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+        <PaginationComponent selected="@Pagination.PageIndex"
+                             TotalCount="@Pagination.TotalPage"
+                             SelectedPageChanged="PaginationResponse" />
+    }
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+ <VehocleCreateorUpdate
+ ParamVehicleID="EditedVehicleID"                                                         
+ ModalCreateorUpdate="ModalCreateOrUpdateResult" />
+
+<AlertMessage ParmMessage="@AlertMessage" ParmSucessOrFaild="@SuccessOrFaild" />
+
+<DeleteConfirmModal Message="@DeleteConfirmModalMessage" OnSubmit="DeleteConfirmed" />

@@ -1,5 +1,379 @@
-﻿<h3>VehocleCreateorUpdate</h3>
+﻿ <!--------Popup Start-------->
+<div id="addVehicleModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-40">
+    <div id="ModalContaner" class="min-w-  popup-animate">
+        <div class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-3">
+            <div class="border-b border-gray-200">
+                <button @onclick="HideModal" class="transition-color absolute right-3 top-3 z-999 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600  ">
+                    <svg class="fill-current text-red-700" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.04289 16.5418C5.65237 16.9323 5.65237 17.5655 6.04289 17.956C6.43342 18.3465 7.06658 18.3465 7.45711 17.956L11.9987 13.4144L16.5408 17.9565C16.9313 18.347 17.5645 18.347 17.955 17.9565C18.3455 17.566 18.3455 16.9328 17.955 16.5423L13.4129 12.0002L17.955 7.45808C18.3455 7.06756 18.3455 6.43439 17.955 6.04387C17.5645 5.65335 16.9313 5.65335 16.5408 6.04387L11.9987 10.586L7.45711 6.04439C7.06658 5.65386 6.43342 5.65386 6.04289 6.04439C5.65237 6.43491 5.65237 7.06808 6.04289 7.4586L10.5845 12.0002L6.04289 16.5418Z" fill=""></path>
+                    </svg>
+                </button>
+                <h4 class="mb-2 text-xl font-semibold text-gray-800 text-center">
+                    Vehicle  Management
+                </h4>
 
-@code {
+            </div>
+            <form class="">
+                <div class="custom-scrollbar h-[450px] overflow-y-auto px-2 mt-4">
 
-}
+
+
+                    <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Registration No
+                            </label>
+                            <input type="text" placeholder="Vehicle Registration No" @bind="Model.VehicleRegistrationNo" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Model
+                            </label>
+                            <input type="text" placeholder="Vehicle Model" @bind="Model.VehicleModel" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Registration Type
+                            </label>
+
+                            <select @bind="Model.RegistrationType"
+                                    class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+
+                                @foreach (var item in Enum.GetValues(typeof(Utility.VehicleRegistrationType)).Cast<Utility.VehicleRegistrationType>())
+                                {
+                                    <option value="@item" class="text-gray-700">
+                                        @item.ToString()
+                                    </option>
+                                }
+
+
+
+                            </select>
+
+
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Serial No
+                            </label>
+                            <input type="text" placeholder="Serial No" @bind="Model.SerialNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Owner ID
+                            </label>
+                            <input type="text" placeholder="Owner ID" @bind="Model.OwnerID" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Owner Name
+                            </label>
+                            <input type="text" placeholder="Owner Name" @bind="Model.OwnerName" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Year of Manufacture
+                            </label>
+                            <input type="text" placeholder="Year of Manufacture" @bind="Model.YearOfManufacture" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Plate Number
+                            </label>
+                            <input type="text" placeholder="Plate Number" @bind="Model.PlateNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Driving License Expiration Date
+                            </label>
+                            <input type="date" placeholder="Driving License Expiration Date"
+                                   @bind="Model.DrivingLicenseExpiry"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Chassis Number
+                            </label>
+                            <input type="text" placeholder="Chassis Number" @bind="Model.ChasisNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Weight
+                            </label>
+                            <input type="text" placeholder="Vehicle Weight" @bind="Model.VehicleWeight" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Company
+                            </label>
+                            <input type="text" placeholder="Insurance Company" @bind="Model.InsuranceCompany" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Policy Number
+                            </label>
+                            <input type="text" placeholder="Insurance Policy Number" @bind="Model.InsurancePolicyNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Start Date
+                            </label>
+                            <input type="date" placeholder="Insurance Start Date"
+                                   @bind="Model.InsuranceStartDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Expiration Date
+                            </label>
+                            <input type="date" placeholder="Insurance Expiration Date"
+                                   @bind="Model.InsuranceExpiry"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+
+
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Insurance Status
+                            </label>
+
+                            <select @bind="Model.InsuranceStatus"
+                                    class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+
+                                @foreach (var item in Enum.GetValues(typeof(Utility.Status)))
+                                {
+                                    <option value="@item" class="text-gray-700">
+                                        @item.ToString()
+                                    </option>
+                                }
+
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Inspection Expiry Date
+                            </label>
+                            <input type="date" placeholder="Vehicle Inspection Expiry Date"
+                                   @bind="Model.VehicleInspectionExpiryDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Inspection Due In
+                            </label>
+                            <input type="date" placeholder="Vehicle Inspection Due In"
+                                   @bind="Model.VehicleInspectionDueIn"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Registration Expiration Date
+                            </label>
+                            <input type="date" placeholder="Vehicle Registration Expiration Date"
+                                   @bind="Model.VehicleRegistrationExpiry"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Vehicle Registration Expires In
+                            </label>
+                            <input type="date" placeholder="Vehicle Registration Expires In"
+                                   @bind="Model.VehicleRegistrationExpiryIn"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Operation Card Expiry Date
+                            </label>
+                            <input type="date" placeholder="Operation Card Expiry Date"
+                                   @bind="Model.OperationCardExpiryDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Operation Card Expires In
+                            </label>
+                            <input type="date" placeholder="Operation Card Expires In"
+                                   @bind="Model.OperationCardExpiryIn"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                GPS Tracking Expiration Date
+                            </label>
+                            <input type="date" placeholder="GPS Tracking Expiration Date"
+                                   @bind="Model.GPSTrackingExpiryDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                GPS Tracking Expiration In
+                            </label>
+                            <input type="date" placeholder="GPS Tracking Expiration Date"
+                                   @bind="Model.GPSTrackingExpiryIn"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Driver Name
+                            </label>
+                            <input type="text" placeholder="Driver Name" @bind="Model.DriverName" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Phone Number
+                            </label>
+                            <input type="text" placeholder="Phone Number" @bind="Model.PhoneNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Iqama Number
+                            </label>
+                            <input type="text" placeholder="Iqama Number" @bind="Model.IqamaNumber" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Permission Status
+                            </label>
+
+                            <select @bind="Model.PermissionStatus"
+                                    class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
+
+                                @foreach (var item in Enum.GetValues(typeof(Utility.Status)))
+                                {
+                                    <option value="@item" class="text-gray-700">
+                                        @item.ToString()
+                                    </option>
+                                }
+
+
+
+                            </select>
+
+
+                        </div>
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                End Date of Permission
+                            </label>
+                            <input type="date" placeholder="End Date of Permission"
+                                   @bind="Model.PermissionEndDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Permission Expires In
+                            </label>
+                            <input type="date" placeholder="Permission Expires In"
+                                   @bind="Model.PermissionExpiresIn"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
+
+ 
+ 
+
+
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end border-t border-gray-200 pt-4">
+                    <button @onclick="HideModal" type="button" class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50  sm:w-auto">
+                        Close
+                    </button>
+                    <button @onclick="SubmitData" type="button" class="flex w-full justify-center rounded-lg main-bg-dark-color px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

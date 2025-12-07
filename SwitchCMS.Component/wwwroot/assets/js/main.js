@@ -369,3 +369,38 @@ function HideAccessAccountModal() {
     const modal = document.getElementById("addAccountModal");
     modal.classList.add("hidden");
 }
+
+
+
+
+// Handover Modal
+function CreateHandoverModal() {
+    const modal = document.getElementById("addvehiclehandover");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+
+function HideHandoverModal() {
+    const modal = document.getElementById("addvehiclehandover");
+    modal.classList.add("hidden");
+}
+
+
+
+// Vehicle Modal
+function CreateVehicleModal() {
+    const modal = document.getElementById("addVehicleModal");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+}
+
+function HideVehicleModal() {
+    const modal = document.getElementById("addVehicleModal");
+    modal.classList.add("hidden");
+}
