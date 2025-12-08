@@ -12,6 +12,10 @@ a, button {
   cursor: pointer;
 }
 
+table {
+  border: 1px solid #c4c4c4;
+}
+
 .login-mian-bg {
   background-image: url("../img/background_anim.gif");
   background-color: #cccccc;
@@ -143,6 +147,41 @@ a, button {
   color: #525252;
 }
 
+.login-form-group .mud-input-control > .mud-input-control-input-container {
+  background: #fff !important;
+  border-radius: 4em;
+  width: 100%;
+  height: 2.7em;
+  /*background: #f1f1f1;*/
+  border: 1px solid #3181c9;
+}
+
+.login-form-group .mud-input-control.mud-input-outlined-with-label {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.login-form-group .mud-input {
+  width: 100%;
+  height: 2.7em;
+  /*background: #f1f1f1;*/
+  border: 1px solid #3181c9;
+  background: #fff !important;
+  border-radius: 4em;
+}
+
+.login-form-group .mud-input.mud-input-outlined .mud-input-outlined-border {
+  display: none;
+}
+
+.login-form-group .mud-select .mud-select-input .mud-input-slot {
+  font-size: 15px;
+}
+
+.login-form-group .mud-select .mud-select-input .mud-input-slot:focus {
+  box-shadow: none;
+}
+
 .file_head_show_span {
   margin-bottom: 2px;
   display: block;
@@ -165,6 +204,10 @@ a, button {
 
 .main-bg-dark-color {
   background-color: #023161;
+}
+
+.main-bg-light-color {
+  background-color: rgb(203, 231, 255);
 }
 
 /*------------Custom Check box------------------------*/
@@ -342,7 +385,7 @@ a, button {
 }
 
 .submenu.open {
-  max-height: 300px;
+  max-height: 500px;
 }
 
 /*--------------Dropdown-------------------*/
@@ -417,4 +460,12 @@ a, button {
   outline: 0 !important;
   box-shadow: none !important;
   border: 1px solid #023161;
+}
+
+/*--------------Carousel---------------------*/
+.carousel-image {
+  width: 100%;
+  border: 1px solid #02347a;
+  object-fit: contain;
+  border-radius: 10px;
 }

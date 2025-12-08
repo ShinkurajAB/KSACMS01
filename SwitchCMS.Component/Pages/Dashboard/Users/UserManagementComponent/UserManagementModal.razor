@@ -4,7 +4,7 @@
 
     <!-- POPUP -->
     <div id="ModalContaner" class="  popup-animate">
-        <div class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 lg:p-11">
+        <div class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 ">
             <!-- close btn -->
             <button @onclick="CloseModal" class="transition-color absolute right-5 top-5 z-999 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600  ">
                 <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,26 +126,28 @@
                     
                             @if (!MenuAssignorNot)
                             {
-                                <MudGrid >
+                                <MudGrid Class="mt-4">
                                     <MudItem xs="12">
-                                           <label>Assign Menu Access</label>
-                                    <br>
+                                           @* <label class="block mb-3 text-center">Assign Menu Access</label> *@
+                                <MudText Typo="Typo.h6" Class="mb-3 text-center">Assign Menu Access</MudText>
                                     <div class="dual-select">
                                         <MudDropContainer T="OMEN"
                                                           Items="MenuList"
                                                           ItemsSelector="@((item, dropzone) => item.Selector == dropzone)"
                                                           ItemDropped="OnItemDropped"
-                                                          Class="d-flex flex-wrap flex-grow-1">
+                                                          Class="d-flex gap-3">
                                             <ChildContent>
-                                                <MudDropZone T="OMEN" Identifier="available" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
-                                                    <MudText Typo="Typo.h6" Class="mb-4">Availiable Menu</MudText>
+                                            <MudDropZone T="OMEN" Identifier="available" Class="rounded main-bg-light-color pa-2 w-100  rounded-md">
+                                                    @* <MudText Typo="Typo.h6" Class="mb-4 text-center"></MudText> *@
+                                                <label class="block mb-3 text-center">Availiable Menu</label>
                                                 </MudDropZone>
-                                                <MudDropZone T="OMEN" Identifier="assigned" Class="rounded mud-background-gray pa-6 ma-8 flex-grow-1">
-                                                    <MudText Typo="Typo.h6" Class="mb-4">Assigned Menu</MudText>
+                                            <MudDropZone T="OMEN" Identifier="assigned" Class="rounded main-bg-light-color pa-2 w-100 rounded-md">
+                                                    @* <MudText Typo="Typo.h6" Class="mb-4">Assigned Menu</MudText> *@
+                                                <label class="block mb-3 text-center">Assigned Menu</label>
                                                 </MudDropZone>
                                             </ChildContent>
                                             <ItemRenderer>
-                                                <MudPaper Elevation="25" Class="pa-4 my-4">@context.Name</MudPaper>
+                                            <MudPaper Elevation="25" Class="pa-4 my-4 text-center">@context.Name</MudPaper>
                                             </ItemRenderer>
 
                                         </MudDropContainer>
