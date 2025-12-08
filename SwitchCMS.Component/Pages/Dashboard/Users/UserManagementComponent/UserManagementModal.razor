@@ -69,6 +69,19 @@
                             </AuthorizeView>
 
 
+                            <AuthorizeView Roles="CompanyAdmin">
+                                <Authorized>
+                                    @if (SelectedRole == Utility.Roles.EmployeeUser)
+                                    {
+                                        <div>
+                                            <label class="mb-1.5 block text-sm font-medium text-gray-700 " for="password">Password</label>
+                                            <input class=" h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 " type="password" @bind-value="SelectedUser.Password" id="password" name="password" autocomplete="off">
+                                        
+                                        </div>
+                                    }
+                                </Authorized>
+                            </AuthorizeView>
+
                             <div>
                                 <label class="mb-1.5 block text-sm font-medium text-gray-700 " for="userrole">User Role</label>
 
