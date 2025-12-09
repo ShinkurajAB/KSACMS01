@@ -11,7 +11,7 @@ namespace SwitchCMS.API.Services.Interface
     public interface IOCMPService
     {
         Task<List<OCMP>> GetAllCompany();
-        Task<bool> SignUpCompany(OCMP company);
+        Task<ModificationStatus> SignUpCompany(OCMP company);
         Task<CompanyPagination> GetCompanyByPagination(CompanyPagination pagination);
         Task<bool> UpdateCompany(OCMP company);
         Task<bool> UpdateCompanyStatus(int companyId, string companyStatus);

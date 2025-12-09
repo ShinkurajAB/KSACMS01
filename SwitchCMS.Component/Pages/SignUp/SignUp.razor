@@ -12,24 +12,29 @@
                 <p class="text-center text-white">Welcome back! we are so happy to have you here.it is great to see you again we hope you had a safe and enjoyable time away</p>
                 <a class="signup-btn" href="@Utility.RouteData.Index">Already Have Account? Sign in</a>
             </div>
+            <AlertMessage ParmMessage="@AlertMessage" ParmSucessOrFaild="@SuccessOrFaild" />
             <div class="w-full">
                 <div class="login-form-main ">
                     <h3>Sign Up</h3>
+                    <EditForm Model="@companyModal">
                     <form class="w-full">
                         <div class="flex gap-3">
                             <div class="login-form-group">
                                 <label>Company Name</label>
-                                <input class="!ps-4" name="Company name" placeholder="Company Name" type="text">
+                                <input class="!ps-4" @bind-value="companyModal.Name" name="Company name" placeholder="Company Name" type="text">
+                                    <p style="color:red">@nameErrorMessage</p>
                             </div>
+                               
                             <div class="login-form-group">
                                 <label>Email Address</label>
-                                <input class="!ps-4" name="Email Address" placeholder="Email Address" type="text">
+                                <input class="!ps-4" @bind-value="companyModal.Email" name="Email Address" placeholder="Email Address" type="text">
                             </div>
+                                <p class="error_msg" style="color:red">@emailErrorMessage</p>
                         </div>
                         <div class="flex gap-3">
                             <div class="login-form-group">
                                 <label>CR Number</label>
-                                <input name="CR Number" class="!ps-4" placeholder="CR Number" type="text">
+                                <input name="CR Number" @bind-value="companyModal.CRNumber" class="!ps-4" placeholder="CR Number" type="text">
                             </div>
                             <div class="login-form-group">
                                 <label >
@@ -37,17 +42,18 @@
                                 </label>
                                 <CountryDropdown ParamSelectedCountry="@selectedCountry" SelectedCountryCallBack="CountrySelection" />
                             </div>
-                           
+                                <p class="error_msg" style="color:red">@countryCodeErrorMessage</p>
                         </div>
                         <div class="flex gap-3">
                             <div class="login-form-group">
                                 <label>Contact Person</label>
-                                <input class="!ps-4" name="Contact Person" placeholder="Contact Person" type="text">
+                                <input class="!ps-4" @bind-value="companyModal.ContactPerson" name="Contact Person" placeholder="Contact Person" type="text">
                             </div>
                         <div class="login-form-group">
                             <label>Contact Person Number</label>
-                            <input name="Contact Person Number" class="!ps-4" placeholder="Contact Person Number" type="text">
+                            <input name="Contact Person Number" @bind-value="companyModal.PhoneNumber" class="!ps-4" placeholder="Contact Person Number" type="text">
                         </div>
+                                <p class="error_msg" style="color:red">@contactErrorMessage</p>
                         </div>
                         <div class="grid grid-cols-2 gap-4 mt-4">
 
@@ -59,10 +65,20 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="file_head_show_span">CR Certificate</span>
-                                    <span class="text-xs text-gray-500">Choose file</span>
+                                    @if(!string.IsNullOrEmpty(companyModal.CRCertificate))
+                                        {
+                                            <span class="text-xs text-gray-500">@companyModal.CRCertificate</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-xs text-gray-500">Choose file</span>                                            
+                                        }
+
                                 </div>
-                                <input type="file" accept="application/pdf" class="hidden">
-                            </label>
+                                    <InputFile  OnChange="@UploadCRFiles" id="file" accept="application/pdf" class="hidden" />
+                                     
+                                </label>
+                                <p style="color:red">@UploadCRFileError</p>
 
                             <!-- Upload 2 -->
                             <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
@@ -72,11 +88,18 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="file_head_show_span">National ID</span>
-                                    <span class="text-xs text-gray-500">Choose file</span>
-                                </div>
-                                <input type="file" accept="application/pdf" class="hidden">
+                                        @if (!string.IsNullOrEmpty(companyModal.NationalID))
+                                        {
+                                            <span class="text-xs text-gray-500">@companyModal.NationalID</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-xs text-gray-500">Choose file</span>
+                                        }
+                                              </div>
+                                    <InputFile OnChange="@UploadNationalIdFiles" id="file" accept="application/pdf" class="hidden" />
                             </label>
-
+                                <p style="color:red">@UploadNationalIDFileError</p>
                             <!-- Upload 3 -->
                             <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
                                 <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
@@ -85,11 +108,18 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="file_head_show_span">VAT Certificate</span>
-                                    <span class="text-xs text-gray-500">Choose file</span>
-                                </div>
-                                <input type="file" accept="application/pdf" class="hidden">
+                                        @if (!string.IsNullOrEmpty(companyModal.VATCertificate))
+                                        {
+                                            <span class="text-xs text-gray-500">@companyModal.VATCertificate</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-xs text-gray-500">Choose file</span>
+                                        }
+                                                      </div>
+                                    <InputFile OnChange="@UploadVatFiles" id="file" accept="application/pdf" class="hidden" />
                             </label>
-
+                                <p style="color:red">@UploadVATFileError</p>
                             <!-- Upload 4 -->
                             <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
                                 <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
@@ -97,16 +127,23 @@
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="file_head_show_span">Others</span>
-                                    <span class="text-xs text-gray-500">Choose file</span>
-                                </div>
-                                <input type="file" accept="application/pdf" class="hidden">
+                                        @if (!string.IsNullOrEmpty(companyModal.Other))
+                                        {
+                                            <span class="text-xs text-gray-500">@companyModal.Other</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-xs text-gray-500">Choose file</span>
+                                        }
+                                                              </div>
+                                    <InputFile OnChange="@UploadOtherFiles" id="file" accept="application/pdf" class="hidden" />
                             </label>
                         </div>
 
 
 
                         <div class="checkbox-wrapper-15 my-4">
-                            <input class="inp-cbx" id="cbx-15" type="checkbox" style="display: none;" />
+                            <input @bind-value="isTermsChecked" class="inp-cbx" id="cbx-15" type="checkbox" style="display: none;" />
                             <label class="cbx" for="cbx-15">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -118,11 +155,13 @@
                                     <a class="text-blue-600 font-semibold underline" href="#">Terms & Conditions</a>
                                 </span>
                             </label>
+                                <p style="color:red">@termsAndCondtionsErrorMsg</p>
                         </div>
 
 
-                        <button class="sign-in-btn mb-3">Sign Up</button>
+                        <button @onclick="SignUpCompany" class="sign-in-btn mb-3">Sign Up</button>
                     </form>
+                    </EditForm>
                 </div>
             </div>
         </div>
@@ -130,16 +169,5 @@
 </main>
 
 @code{
-    [Inject]
-    IOCRYService? countryService { get; set; }
-
-
-    OCRY selectedCountry = new OCRY();
-
-    private void CountrySelection(OCRY country)
-    {
-        selectedCountry = country;
-        //EmployeeModal.Nationality = selectedCountry.Code;
-        this.StateHasChanged();
-    }
+   
 }

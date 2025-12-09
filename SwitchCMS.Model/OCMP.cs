@@ -23,8 +23,14 @@ namespace SwitchCMS.Model
         public string PhoneNumber {  get; set; }=string.Empty;
         public CompanyStatus Status { get; set;} 
         public string CountryCode {  get; set; }=string.Empty;
-        public DateTime? ValidationDate {  get; set; }
+        public DateTime? ValidationDate { get; set; } = DateTime.Now;
         public bool IsAll {  get; set; }
+        public string CRNumber { get; set; } = string.Empty;
+        public string ContactPerson { get; set; } = string.Empty;
+        public string CRCertificate { get; set; } = string.Empty;
+        public string NationalID { get; set; } = string.Empty;
+        public string VATCertificate { get; set; } = string.Empty;
+        public string Other { get; set; } = string.Empty;
         public OCRY Country { get; set; } = new();
 
     }

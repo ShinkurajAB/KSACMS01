@@ -1,5 +1,4 @@
-﻿@* @attribute [Route(Utility.RouteData.CompanyManagement)] *@
-@page "/viw"
+﻿ @attribute [Route(Utility.RouteData.CompanyManagement)] 
 @attribute [Authorize(Roles = "SuperAdmin,CompanyAdmin")]
 @layout DashboardLayout
 @using SwitchCMS.Component.CommonComponents
@@ -9,7 +8,7 @@
 <div class="flex justify-between items-center  my-4">
 <h2 class="text-xl font-bold text-gray-800 text-center mb-6">Company Management</h2>
 
-<button @onclick="EditCompany" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
+    <button @onclick="ShowCompanyModal" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M5 10.0002H15.0006M10.0002 5V15.0006" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
@@ -20,134 +19,116 @@
 
 
 <div class=" rounded-xl border border-gray-200 ">
-    <table class="min-w-full text-left text-gray-700 ">
-        <thead class="bg-gray-200 ">
-            <tr class="border-b border-gray-100">
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    No
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Company Name
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Email Address
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    CR Number
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Contact Person
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Contact Person Number
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    View Attachment
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Status
-                </th>
-                <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100 ">
+    @if (companyPagination.CompanyList.Count > 0)
+    {
+        <table class="min-w-full text-left text-gray-700 ">
+            <thead class="bg-gray-200 ">
+                <tr class="border-b border-gray-100">
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        No
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Company Name
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Email Address
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        CR Number
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Contact Person
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Contact Person Number
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        View Attachment
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Status
+                    </th>
+                    <th class="px-2 py-2 text-sm font-medium   text-gray-700 ">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 ">
+    @foreach (var item in companyPagination.CompanyList)
+                {
+                    <tr>
+                        <td class="px-2 py-2 text-sm   text-gray-500 bg-white">
+                            @item.ID
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            @item.Name
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800  bg-white">
+                            @item.Email
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            @item.CRNumber
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            @item.ContactPerson
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            @item.PhoneNumber
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            <button class="flex gap-1 border rounded-md py-1 px-2 main-bg-dark-color text-white text-xs" @onclick="()=>ViewCertificate(item)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
+                                Attachment
+                            </button>
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
+                            @if(item.Status==Utility.CompanyStatus.InActive)
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">@item.Status</span>
+                            }
+                            else
+                            {
+                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">@item.Status</span>
+                            }
+                            
+                        </td>
 
-            <tr>
-                <td class="px-2 py-2 text-sm   text-gray-500 bg-white">
-                    100
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    K and D Company
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800  bg-white">
-                    KandD@gmail.com
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    1209567
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    Abdulla
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    9898484994
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    <button class="flex gap-1 border rounded-md py-1 px-2 main-bg-dark-color text-white text-xs" @onclick="ViewAttachment">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
-                        Attachment
-                    </button>
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
-                </td>
+                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
 
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
+                             @if(item.Status!=Utility.CompanyStatus.Pending)
+                            {
+                                <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                                </button>
+                                <div class="z-10 dropdown absolute right-2 top-10  bg-white border shadow rounded hidden min-w-48 opacity-0 scale-95 transition-all duration-200">
+                                    <button @onclick="()=>EditCompany(item)" class=" flex w-full items-center gap-2 rounded-t-md border-b p-2 hover:bg-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 icon icon-tabler icons-tabler-outline icon-tabler-file-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z" /></svg>
+                                        Edit
+                                    </button>
+                                    <button @onclick="() => DeleteConfirmModal(item.ID)" class=" flex items-center gap-2 w-full rounded-b-md  p-2 hover:bg-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                                        Delete
+                                    </button>
+                                </div>
+                            }
+                            else
+                            {
+                            <td><button @onclick="() => UpdateCompanyStatus(item.ID)" class="btn btn-primary">Approve</button></td>
+                            }
 
-                    <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-                    </button>
-                    <div class="z-10 dropdown absolute right-2 top-10  bg-white border shadow rounded hidden min-w-48 opacity-0 scale-95 transition-all duration-200">
-                        <button @onclick="EditCompany"  class=" flex w-full items-center gap-2 rounded-t-md border-b p-2 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 icon icon-tabler icons-tabler-outline icon-tabler-file-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z" /></svg>
-                            Edit
-                        </button>
-                        <button @onclick="DeleteConfirmationModalShow" class=" flex items-center gap-2 w-full rounded-b-md  p-2 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
-                            Delete
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="px-2 py-2 text-sm   text-gray-500 bg-white">
-                    100
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    K and D Company
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800  bg-white">
-                    KandD@gmail.com
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    1209567
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    Abdulla
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    9898484994
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    <button @onclick="ViewAttachment" class="flex gap-1 border rounded-md py-1 px-2 main-bg-dark-color text-white text-xs">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
-                        Attachment
-                    </button>
-                </td>
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white">
-                    <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
-                </td>
+                        </td>
+                    </tr>
+                }
+                
+             
+            </tbody>
+        </table>
 
-                <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
-
-                    <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-                    </button>
-                    <div class="z-10 dropdown absolute right-2 top-10  bg-white border shadow rounded hidden min-w-48 opacity-0 scale-95 transition-all duration-200">
-                        <button class=" flex w-full items-center gap-2 rounded-t-md border-b p-2 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600 icon icon-tabler icons-tabler-outline icon-tabler-rosette-discount-check"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7c.412 .41 .97 .64 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1c0 .58 .23 1.138 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55v-1" /><path d="M9 12l2 2l4 -4" /></svg>
-                            Approve
-                        </button>
-                        <button class=" flex items-center gap-2 w-full rounded-b-md  p-2 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600 icon icon-tabler icons-tabler-outline icon-tabler-square-rounded-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10l4 4m0 -4l-4 4" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
-                            Reject
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <PaginationComponent selected="@companyPagination.PageIndex"
+                             TotalCount="@companyPagination.TotalPage"
+                             SelectedPageChanged="PaginationResponse" />
+    }
+    
 </div>
 
 
@@ -175,7 +156,7 @@
                             <span class="acc-symbol">+</span>
                         </button>
                         <div class="hidden  p-3 rounded-xl border border-gray-200 text-gray-700">
-                            <iframe src="_content/SwitchCMS.Component/assets/PDF/SECOND TERMINAL EXAMINATION TIMETABLE FOR STSTE KG 2025.pdf" width="100%" height="600"></iframe>
+                            <iframe src="@CRCertificateURL" width="100%" height="600"></iframe>
                         </div>
 
                         <button type="button" class="attach-acco-btn acc-btn w-full text-left py-2 px-4 bg-white flex justify-between items-center  rounded-xl border border-gray-200 mt-3">
@@ -183,7 +164,7 @@
                             <span class="acc-symbol">+</span>
                         </button>
                         <div class="hidden p-3 rounded-xl border border-gray-200 text-gray-700">
-                            <iframe src="_content/SwitchCMS.Component/assets/PDF/SECOND TERMINAL EXAMINATION TIMETABLE FOR STSTE KG 2025.pdf" width="100%" height="600"></iframe>
+                            <iframe src="@NationalIdUrl" width="100%" height="600"></iframe>
 
                         </div>
                         <button type="button" class="attach-acco-btn acc-btn w-full text-left py-2 px-4 bg-white flex justify-between items-center  rounded-xl border border-gray-200 mt-3">
@@ -191,7 +172,7 @@
                             <span class="acc-symbol">+</span>
                         </button>
                         <div class="hidden  p-3 rounded-xl border border-gray-200 text-gray-700">
-                            <iframe src="_content/SwitchCMS.Component/assets/PDF/SECOND TERMINAL EXAMINATION TIMETABLE FOR STSTE KG 2025.pdf" width="100%" height="600"></iframe>
+                            <iframe src="@VatCertificateUrl" width="100%" height="600"></iframe>
 
                         </div>
                         <button type="button" class="attach-acco-btn acc-btn w-full text-left py-2 px-4 bg-white flex justify-between items-center  rounded-xl border border-gray-200 mt-3">
@@ -199,7 +180,7 @@
                             <span class="acc-symbol">+</span>
                         </button>
                         <div class="hidden  p-3 rounded-xl border border-gray-200 text-gray-700">
-                            <iframe src="_content/SwitchCMS.Component/assets/PDF/SECOND TERMINAL EXAMINATION TIMETABLE FOR STSTE KG 2025.pdf" width="100%" height="600"></iframe>
+                            <iframe src="@OtherCertificateUrl" width="100%" height="600"></iframe>
 
                         </div>
                     </div>
@@ -214,115 +195,17 @@
 
     </div>
 </div>
-<!--------Edit Company Management Modal Start-------->
-<div id="EditCompanyManagementModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-40">
-    <div id="ModalContaner" class="min-w-  popup-animate">
-        <div class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-3">
-            <div class="border-b border-gray-200">
-                <button @onclick="EditCompanyManageHide" class="transition-color absolute right-3 top-3 z-999 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600  ">
-                    <svg class="fill-current text-red-700" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.04289 16.5418C5.65237 16.9323 5.65237 17.5655 6.04289 17.956C6.43342 18.3465 7.06658 18.3465 7.45711 17.956L11.9987 13.4144L16.5408 17.9565C16.9313 18.347 17.5645 18.347 17.955 17.9565C18.3455 17.566 18.3455 16.9328 17.955 16.5423L13.4129 12.0002L17.955 7.45808C18.3455 7.06756 18.3455 6.43439 17.955 6.04387C17.5645 5.65335 16.9313 5.65335 16.5408 6.04387L11.9987 10.586L7.45711 6.04439C7.06658 5.65386 6.43342 5.65386 6.04289 6.04439C5.65237 6.43491 5.65237 7.06808 6.04289 7.4586L10.5845 12.0002L6.04289 16.5418Z" fill=""></path>
-                    </svg>
-                </button>
-                <h4 class="mb-2 text-xl font-semibold text-gray-800 text-center">
-                    Edit Company
-                </h4>
-
-            </div>
-            <form class="">
-                <div class="custom-scrollbar max-h-[450px] overflow-y-auto px-2 mt-4">
-
-
-
-                    <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                No
-                            </label>
-                            <input type="number" placeholder="No" value="1122" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Company Name
-                            </label>
-                            <input type="text" placeholder="Company Name" value="Test" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Email Address
-                            </label>
-                            <input type="email" placeholder="Email Address" value="test" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Contact Person
-                            </label>
-                            <input type="text" placeholder=" Contact Person" value="Test" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Contact Person Number
-                            </label>
-                            <input type="text" placeholder="Contact Person Number" value="857489984789894" class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
-                        </div>
-
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                 Status
-                            </label>
-                            <select class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2 pr-11 text-sm text-gray-800 placeholder:text-gray-400 ">
-                                <option value="" class="text-gray-700">
-                                    Active
-                                </option>
-                                <option value="" class="text-gray-700">
-                                    Inactive
-                                </option>
-                            </select>
-                        </div>
-                    
-                    </div>
-
-
-                </div>
-                <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end border-t border-gray-200 pt-4">
-                    <button onclick="hideCreateNewDataPopUP()" type="button" class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50  sm:w-auto">
-                        Close
-                    </button>
-                    <button type="button" class="flex w-full justify-center rounded-lg main-bg-dark-color px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto">
-                        Save Changes
-                    </button>
-                </div>
-            </form>
-        </div>
-
-
-    </div>
-</div>
-<!--------Popup End-------->
-<DeleteConfirmModal/>
-
+<SwitchCMS.Component.Pages.Dashboard.CompanyManagement.CompanyManagementComponent.CompanyManagementComponent ParamCompany="companyModal" ModalCreateorUpdate="ModalCreateOrUpdateResult" />
+<DeleteConfirmModal Message="DeleteConfirmModalMessage" OnSubmit="DeleteCompany" />
+<AlertMessage ParmMessage="@AlertMessage" ParmSucessOrFaild="@SuccessOrFaild" />
 @code{
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("attachmentAccordion");
-        }
-    }
-    private async void ViewAttachment()
-    {
-       
-        await JS.InvokeVoidAsync("showViewAttachmentModal");
-    }
+   
+    
     private async void HideAttachmentModal()
     {
         await JS.InvokeVoidAsync("hideViewAttachmentModal");
     }
-    private async void DeleteConfirmationModalShow()
-    {
-        await JS.InvokeVoidAsync("showDeleteConfirmModal");
-    }
+   
     private async void EditCompany()
     {
         await JS.InvokeVoidAsync("showEditCompanyManagementModal");
