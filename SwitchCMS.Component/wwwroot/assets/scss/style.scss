@@ -508,6 +508,8 @@ color: #023161;
 .carousel-image {
     width: 100%;
     border: 1px solid #02347a;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
+    height: 350px;
+    /* height: 100%; */
 }
