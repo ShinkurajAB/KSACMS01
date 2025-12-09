@@ -12,7 +12,7 @@ namespace SwitchCMS.Repository.Interface
     {
 
         Task<List<OCMP>> GetAllCompanys();
-        Task<bool> SignUpCompany(OCMP company);
+        Task<int> SignUpCompany(OCMP company);
         Task<List<OCMP>> GetCompanyByPageIndex(CompanyPagination companyPagination);
         Task<int> GetTotalCompanyCount(CompanyPagination Pagination);
         Task<bool> UpdateCompany(OCMP company);

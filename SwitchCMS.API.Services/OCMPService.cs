@@ -1,6 +1,7 @@
 ﻿using SwitchCMS.API.Services.Interface;
 using SwitchCMS.Model;
 using SwitchCMS.Model.UI;
+using SwitchCMS.Repository;
 using SwitchCMS.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,19 @@ namespace SwitchCMS.API.Services
         }
 
       
-        public async Task<bool> SignUpCompany(OCMP company)
+        public async Task<ModificationStatus> SignUpCompany(OCMP company)
         {
-            bool isSuccess = await CompanyRepository.SignUpCompany(company);
-            return isSuccess;
+           int companyId = await CompanyRepository.SignUpCompany(company);
+            if (companyId>0)
+            {
+               
+                return new ModificationStatus { Success = true, Message = "Company Data Inserted Successfully",ID=companyId };
+            }
+            else
+            {
+                return new ModificationStatus { Success = false, Message = "Company Data Insertion Failed", ID = companyId };
+            }
+           
         }
 
         public async Task<bool> UpdateCompany(OCMP company)

@@ -12,11 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManagementComponent
+namespace SwitchCMS.Component.Pages.Dashboard.CompanyManagement.CompanyManagementComponent
 {
     public partial class CompanyManagementComponent
     {
-
         #region Parameters
         [Parameter]
         public OCMP ParamCompany { get; set; }
@@ -72,7 +71,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManageme
         #region Close Add Company Modal
         private async Task CloseAddCompanyModal()
         {
-            await JSRuntime!.InvokeVoidAsync("HideCompanyModal");
+            await JSRuntime!.InvokeVoidAsync("hideEditCompanyManagementModal");
         }
         #endregion
         #region Validation
@@ -84,11 +83,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManageme
                 errorMessage = "Please Enter Company Name";
                 return false;
             }
-            if (string.IsNullOrEmpty(SelectedCompany.Address))
-            {
-                errorMessage = "Please Enter Address";
-                return false;
-            }
+           
             if (string.IsNullOrEmpty(SelectedCompany.Email))
             {
                 errorMessage = "Please Enter Email";
@@ -109,11 +104,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManageme
                 errorMessage = "Please Select Status";
                 return false;
             }
-            if (SelectedCompany.ValidationDate!.Value.Date < DateTime.Today.Date)
-            {
-                errorMessage = "Please Select Validation Date Greater Than Today";
-                return false;
-            }
+           
             return true;
         }
         #endregion
@@ -122,7 +113,8 @@ namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManageme
         {
             if (Validation())
             {
-                ModificationStatus modificationStatus = new ModificationStatus();
+               ModificationStatus modificationStatus = new ModificationStatus();
+                SelectedCompany.Address = "Address";
                 if (SelectedCompany.ID == 0)
                 {
                     modificationStatus = await companyService!.SignUpCompany(SelectedCompany);
@@ -133,10 +125,26 @@ namespace SwitchCMS.Component.Pages.Dashboard.SuperAdmin.Company.CompanyManageme
                 }
                 if (modificationStatus.Success)
                 {
-                    SelectedCompany = new OCMP();
+                    SelectedCompany.ID = 0;
+                    SelectedCompany.Address= string.Empty;
+                    SelectedCompany.CRNumber= string.Empty;
+                    SelectedCompany.ContactPerson= string.Empty;
+                    SelectedCompany.CRCertificate= string.Empty;
+                    SelectedCompany.Email= string.Empty;
+                    SelectedCompany.Name= string.Empty;
+                    SelectedCompany.NationalID= string.Empty;
+                    SelectedCompany.PhoneNumber= string.Empty;
+                    SelectedCompany.Other = string.Empty;
+                    SelectedCompany.Status = Utility.CompanyStatus.Active;
+                    SelectedCompany.VATCertificate= string.Empty;
+                    SelectedCompany.Country= new OCRY();
+                    SelectedCompany.CountryCode= string.Empty;
+                    SelectedCompany.ValidationDate= DateTime.Today;
+                    
+
                     AlertMessage = "Saved successfully";
                     SuccessOrFaild = SuccessorFailAlert.Success;
-                    await JSRuntime!.InvokeVoidAsync("HideCompanyModal");
+                    await JSRuntime!.InvokeVoidAsync("hideEditCompanyManagementModal");
                     await ModalCreateorUpdate.InvokeAsync(true);
                     this.StateHasChanged();
                     AlertCalling.CallAlert(JSRuntime!);

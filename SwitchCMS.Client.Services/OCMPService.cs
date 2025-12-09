@@ -115,7 +115,7 @@ namespace SwitchCMS.Client.Services
             }
         }
 
-        public async Task<bool> SignUpCompany(OCMP company)
+        public async Task<ModificationStatus> SignUpCompany(OCMP company)
         {
             try
             {
@@ -124,21 +124,21 @@ namespace SwitchCMS.Client.Services
                 string apiResponse = await result.Content.ReadAsStringAsync();
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    return Convert.ToBoolean(apiResponse);
+                    return JsonConvert.DeserializeObject<ModificationStatus>(apiResponse)!;
                 }
                 else if (result.StatusCode == HttpStatusCode.BadRequest)
                 {
                     Console.WriteLine("Error:" + apiResponse);
-                    return false;
+                    return new ModificationStatus();
                 }
                 else
                 {
                     Console.WriteLine("Unknown Error");
-                    return false;
+                    return new ModificationStatus();
 
                 }
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return false; }
+            catch (Exception ex) { Console.WriteLine(ex.Message); return new ModificationStatus(); }
         }
 
         public async Task<bool> UpdateCompany(OCMP company, string token)

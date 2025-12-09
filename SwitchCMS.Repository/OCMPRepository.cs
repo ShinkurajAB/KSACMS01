@@ -105,7 +105,7 @@ namespace SwitchCMS.Repository
             return TotalCount;
         }
 
-        public async Task<bool> SignUpCompany(OCMP company)
+        public async Task<int> SignUpCompany(OCMP company)
         {
             try
             {
@@ -115,14 +115,15 @@ namespace SwitchCMS.Repository
                                    ,[Email]
                                    ,[PhoneNumber]
                                    ,[Status]
-                                   ,[CountryCode],[ValidationDate])
+                                   ,[CountryCode],[ValidationDate],[CRNumber],[ContactPerson],[CRCertificate],[NationalID],[VATCertificate],[Other])
                              VALUES
                                    (@Name
                                    ,@Address 
                                    ,@Email 
                                    ,@PhoneNumber 
                                    ,@Status 
-                                   ,@CountryCode,@ValidationDate)";
+                                   ,@CountryCode,@ValidationDate,@CRNumber,@ContactPerson,@CRCertificate,@NationalID,@VATCertificate,@Other);
+                                     select CAST(SCOPE_IDENTITY() as int) [ID]";
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("Name", company.Name);
                 parameters.Add("Address", company.Address);
@@ -131,13 +132,20 @@ namespace SwitchCMS.Repository
                 parameters.Add("Status", company.Status.ToString());
                 parameters.Add("CountryCode", company.CountryCode);
                 parameters.Add("ValidationDate", company.ValidationDate);
+                parameters.Add("CRNumber", company.CRNumber);
+                parameters.Add("ContactPerson", company.ContactPerson);
+                parameters.Add("CRCertificate", company.CRCertificate);
+                parameters.Add("NationalID", company.NationalID);
+                parameters.Add("VATCertificate", company.VATCertificate);
+                parameters.Add("Other", company.Other);
+
                 int Success = await DbContext.ExecuteAsync(SqlQuery, parameters);
 
-                return Success>0;
+                return Success;
             }
             catch(Exception ex)
             {
-                return false;
+                return 0;
             }
         }
 
@@ -145,7 +153,10 @@ namespace SwitchCMS.Repository
         {
             try
             {
-                string sqlQuery = "Update OCMP SET Name=@Name,Address=@Address,Email=@Email,PhoneNumber=@PhoneNumber,Status=@Status,CountryCode=@CountryCode,ValidationDate=@ValidationDate where ID=@ID";
+                string sqlQuery = @"Update OCMP SET Name=@Name,Address=@Address,Email=@Email,PhoneNumber=@PhoneNumber,Status=@Status,
+                                    CountryCode=@CountryCode,ValidationDate=@ValidationDate,CRNumber=@CRNumber,ContactPerson=@ContactPerson,
+                                    CRCertificate=@CRCertificate,NationalID=@NationalID,VATCertificate=@VATCertificate,Other=@Other
+                                    where ID=@ID";
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("Name", company.Name);
                 parameters.Add("Address", company.Address);
@@ -154,6 +165,12 @@ namespace SwitchCMS.Repository
                 parameters.Add("Status", company.Status.ToString());
                 parameters.Add("CountryCode", company.CountryCode);
                 parameters.Add("ValidationDate", company.ValidationDate);
+                parameters.Add("CRNumber", company.CRNumber);
+                parameters.Add("ContactPerson", company.ContactPerson);
+                parameters.Add("CRCertificate", company.CRCertificate);
+                parameters.Add("NationalID", company.NationalID);
+                parameters.Add("VATCertificate", company.VATCertificate);
+                parameters.Add("Other", company.Other);
                 parameters.Add("ID",company.ID);
 
                 int Success = await DbContext.ExecuteAsync(sqlQuery, parameters);
