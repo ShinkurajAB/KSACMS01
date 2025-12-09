@@ -42,8 +42,8 @@ namespace SwitchCMS.API.Controllers
             try
             {
 
-                bool isSuccess = await CompanyService.SignUpCompany(Company);
-                return Ok(isSuccess);
+                var data = await CompanyService.SignUpCompany(Company);
+                return Ok(data);
 
             }
             catch (Exception ex)
