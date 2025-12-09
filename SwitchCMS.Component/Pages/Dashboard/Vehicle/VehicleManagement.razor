@@ -4,7 +4,7 @@
 
 
 <div class="flex justify-between items-center  my-4">
-    <h2 class="text-xl font-semibold text-gray-800 ">>Vehicle Management</h2>
+    <h2 class="text-xl font-semibold text-gray-800 ">Vehicle Management</h2>
 
     <button @onclick="CreateOrUpdateModal" class="main-bg-dark-color shadow-theme-xs hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium text-white transition">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -17,10 +17,11 @@
 
 
 
-<div class=" rounded-xl border border-gray-200 ">
+
 
     @if (Pagination.VehicleList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 ">
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -110,15 +111,18 @@
 
             </tbody>
         </table>
+    </div>
+     <div class="flex justify-center mt-5">
         <PaginationComponent selected="@Pagination.PageIndex"
                              TotalCount="@Pagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+                             </div>
     }
 
 
 
-</div>
 
+  
 
 
 
