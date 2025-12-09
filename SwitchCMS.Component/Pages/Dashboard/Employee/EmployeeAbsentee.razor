@@ -16,10 +16,11 @@
 
 
 
-<div class=" rounded-xl border border-gray-200 ">
+
 
     @if (Pagination.EmployeeAbsenceList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 ">
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -43,22 +44,36 @@
                     <tr>
                          
                         <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">@item.ID</td>
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
                             @item.Employee.Name
-                         </th>
+                         </td>
 
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
                             @item.Employee.JobTitle
-                        </th>
+                        </td>
                        
 
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
                             @item.AbsenceDate!.Value.ToString("dd-MM-yyyy")
-                        </th>
+                        </td>
 
-                        <th class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
-                            <button @onclick="() => PrintAbsentee(item.ID)" class="btn btn-primary">View </button>
-                        </th>
+                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+
+                            <button @onclick="() => PrintAbsentee(item.ID)" class="flex gap-1 border rounded-md py-1 px-2 main-bg-dark-color text-white text-xs" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M15 12a3 3 0 1 1 -6 0a3 3 0 0 1 6 0" />
+                                    <path d="M2 12c2 -5 6 -8 10 -8s8 3 10 8c-2 5 -6 8 -10 8s-8 -3 -10 -8" />
+                                </svg>
+
+
+
+                                View
+                            </button>
+                            
+                        </td>
 
                         <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
                             <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
@@ -87,14 +102,17 @@
 
             </tbody>
         </table>
+    </div>
+        <div class="flex justify-center mt-5">
         <PaginationComponent selected="@Pagination.PageIndex"
                              TotalCount="@Pagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+                             </div>
     }
 
 
 
-</div>
+
 
 
 <SwitchCMS.Component.Pages.Dashboard.Employee.EmployeeAbsenteeComponent.EmployeeAbsenteeComponent ParamAbsenteeID="EditedAbsenteeID" ModalCreateorUpdate="ModalCreateOrUpdateResult" />
