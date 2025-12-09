@@ -8,20 +8,17 @@
                     </svg>
                 </button>
                 <h4 class="mb-2 text-xl font-semibold text-gray-800 text-center">
-                    Advatise ment
+                    Advertisement
                 </h4>
 
             </div>
             <div class="">
                 <div class="custom-scrollbar h-[450px] overflow-y-auto px-2 mt-4">
 
+                   
+                        <label class="mb-3 block text-sm font-medium text-gray-700 ">Select Image</label>
 
-
-                    <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">Select Image</label>
-                            
-                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Accept="image/jpeg, image/png">
+                        @*    <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles" Accept="image/jpeg, image/png">
                                 <ActivatorContent>
                                     <MudButton Variant="Variant.Filled"
                                                Color="Color.Primary"
@@ -29,9 +26,33 @@
                                         Upload Files
                                     </MudButton>
                                 </ActivatorContent>
-                            </MudFileUpload>
-                            <p style="color:red">@UploadImageError</p>
-                        </div>
+                            </MudFileUpload> *@
+                        <MudFileUpload T="IBrowserFile"
+                                       FilesChanged="UploadFiles"
+                                       Accept="image/jpeg, image/png"
+                                       Class="w-full">
+                            <ActivatorContent>
+                                <MudPaper Elevation="3"
+                                          Class="p-3 text-center hover:shadow-lg transition-all cursor-pointer w-full"
+                                          Style="border: 2px dashed #023161; border-radius: 14px; width:100%;">
+
+                                    <MudIcon Icon="@Icons.Material.Filled.CloudUpload"
+                                             Size="Size.Medium"
+                                             Color="Color.Primary" />
+
+                                <div class="font-bold text-md">Click to Upload</div>
+                                <div class="border border-2 mt-2 border-dashed border-yellow-400 rounded-md text-xs font-bold text-slate-600 px-2 py-1">For The Best Result Upload Should be 1200 x 350 Pixels (Width: 1200 PX, Height: 350 PX)<span class="text-yellow-400 font-bold">*</span></div>
+
+                                </MudPaper>
+                            </ActivatorContent>
+                        </MudFileUpload>
+
+
+                        <p class="my- mb-6" style="color:red">@UploadImageError</p>
+                    
+
+                    <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-3">
+                    
                         <div class="modal-form-group">
                             <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
                                 Start Date

@@ -90,27 +90,44 @@
                             </select>
                         </div>
 
-                        <div class="modal-form-group">
-                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
-                                Select File
-                            </label>
-                            <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
-                                <ActivatorContent>
-                                    <MudButton Variant="Variant.Filled"
-                                               Color="Color.Primary"
-                                               StartIcon="@Icons.Material.Filled.CloudUpload">
-                                        Upload Files
-                                    </MudButton>
-                                </ActivatorContent>
-                            </MudFileUpload>
-                            <p style="color:red">@UploadFileError</p>
-                        </div>
-
-
-                        <p style="color:red">@ErrorMessage</p>
+                       
                         
                     </div>
+                    <div class="modal-form-group mt-4">
+                        <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                            Select File
+                        </label>
+                        @* <MudFileUpload T="IBrowserFile" FilesChanged="UploadFiles">
+                            <ActivatorContent>
+                                <MudButton Variant="Variant.Filled"
+                                           Color="Color.Primary"
+                                           StartIcon="@Icons.Material.Filled.CloudUpload">
+                                    Upload Files
+                                </MudButton>
+                            </ActivatorContent>
+                        </MudFileUpload> *@
+                        <MudFileUpload T="IBrowserFile"
+                                       FilesChanged="UploadFiles"
+                                       Accept="image/jpeg, image/png"
+                                       Class="w-full">
+                            <ActivatorContent>
+                                <MudPaper Elevation="3"
+                                          Class="p-3 text-center hover:shadow-lg transition-all cursor-pointer w-full"
+                                          Style="border: 2px dashed #023161; border-radius: 14px; width:100%;">
 
+                                    <MudIcon Icon="@Icons.Material.Filled.CloudUpload"
+                                             Size="Size.Medium"
+                                             Color="Color.Primary" />
+
+                                    <div class="font-bold text-md">Click to Upload</div>
+                                </MudPaper>
+                            </ActivatorContent>
+                        </MudFileUpload>
+                        <p style="color:red">@UploadFileError</p>
+                    </div>
+
+
+                    <p style="color:red">@ErrorMessage</p>
 
                 </div>
                 <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end border-t border-gray-200 pt-4">
