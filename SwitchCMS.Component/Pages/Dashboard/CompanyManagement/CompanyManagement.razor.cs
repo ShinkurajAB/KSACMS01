@@ -63,12 +63,14 @@ namespace SwitchCMS.Component.Pages.Dashboard.CompanyManagement
         #region Pagination Selections
         private async Task ViewCertificate(OCMP companySelected)
         {
-            FolderPath = companySelected.ID.ToString();
-            CRCertificateURL= string.IsNullOrEmpty(companySelected.CRCertificate) ? string.Empty : UrlBasePath + FilePath  + FolderPath + "/" + companySelected.CRCertificate;
-        NationalIdUrl= string.IsNullOrEmpty(companySelected.NationalID) ? string.Empty : UrlBasePath + FilePath + FolderPath + "/" + companySelected.NationalID;
-            VatCertificateUrl= string.IsNullOrEmpty(companySelected.VATCertificate) ? string.Empty : UrlBasePath + FilePath + "/" + FolderPath + "/" + companySelected.VATCertificate;
-            OtherCertificateUrl= string.IsNullOrEmpty(companySelected.Other) ? string.Empty : UrlBasePath + FilePath + FolderPath + "/" + companySelected.Other;
             await JS.InvokeVoidAsync("showViewAttachmentModal");
+            FolderPath = companySelected.ID.ToString();
+
+            CRCertificateURL = string.IsNullOrEmpty(companySelected.CRCertificate) ? string.Empty : UrlBasePath + FilePath + FolderPath + "/" + companySelected.CRCertificate;
+            NationalIdUrl= string.IsNullOrEmpty(companySelected.NationalID) ? string.Empty : UrlBasePath + FilePath + FolderPath + "/" + companySelected.NationalID;
+            VatCertificateUrl= string.IsNullOrEmpty(companySelected.VATCertificate) ? string.Empty : UrlBasePath + FilePath +  FolderPath + "/" + companySelected.VATCertificate;
+            OtherCertificateUrl= string.IsNullOrEmpty(companySelected.Other) ? string.Empty : UrlBasePath + FilePath +  FolderPath + "/" + companySelected.Other;
+            this.StateHasChanged();
         }
         private async Task PaginationResponse(int PageIndex)
         {

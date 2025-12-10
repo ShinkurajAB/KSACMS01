@@ -123,7 +123,7 @@ namespace SwitchCMS.Repository
                                    ,@PhoneNumber 
                                    ,@Status 
                                    ,@CountryCode,@ValidationDate,@CRNumber,@ContactPerson,@CRCertificate,@NationalID,@VATCertificate,@Other);
-                                     select CAST(SCOPE_IDENTITY() as int) [ID]";
+                                     select CAST(SCOPE_IDENTITY() as int) [ID];";
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("Name", company.Name);
                 parameters.Add("Address", company.Address);
@@ -139,7 +139,7 @@ namespace SwitchCMS.Repository
                 parameters.Add("VATCertificate", company.VATCertificate);
                 parameters.Add("Other", company.Other);
 
-                int Success = await DbContext.ExecuteAsync(SqlQuery, parameters);
+                int Success = await DbContext.QuerySingleAsync<int>(SqlQuery, parameters);
 
                 return Success;
             }
