@@ -192,7 +192,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadCRFileError = ex.Message;
+                UploadCRFileError = "File Size Exceeded";
             }
         }
         private async Task UploadNationalIdFiles(InputFileChangeEventArgs file)
@@ -220,7 +220,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadNationalIDFileError = ex.Message;
+                UploadNationalIDFileError ="File Size Exceeded";
             }
         }
         private async Task UploadVatFiles(InputFileChangeEventArgs file)
@@ -247,7 +247,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadVATFileError = ex.Message;
+                UploadVATFileError = "File Size Exceeded";
             }
         }
         private async Task UploadOtherFiles(InputFileChangeEventArgs file)
