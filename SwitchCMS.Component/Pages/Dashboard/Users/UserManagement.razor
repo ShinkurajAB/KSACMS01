@@ -48,65 +48,136 @@
 
                 @foreach (var item in Pagination.UserList)
                 {
-                    <tr>
-                        <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
-                            @item.ID
-                        </td>
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
-                            @item.Name
-                        </td>
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800  bg-white">
-                            @item.Company.Name
-                        </td>
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
-                            @item.UserName
-                        </td>
+                   @if(Response.Role==Utility.Roles.CompanyAdmin)
+                    {
+                        @if(item.Role!=Utility.Roles.SuperAdmin)
+                        {
+                            <tr>
+                                <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                                    @item.ID
+                                </td>
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                    @item.Name
+                                </td>
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800  bg-white">
+                                    @item.Company.Name
+                                </td>
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                    @item.UserName
+                                </td>
 
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
 
-                            @if (item.Status == Utility.Status.Active)
-                            {
-                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
-                            }
-                            else
-                            {
-                                <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
-                            }
-                           
-                        </td>
+                                    @if (item.Status == Utility.Status.Active)
+                                    {
+                                        <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
+                                    }
 
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
-                            @item.Role.ToString()
-                        </td>
-                        <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
+                                </td>
 
-                            <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-                            </button>
-                            <div class="z-10 dropdown absolute right-2 top-10 w-36 bg-white border shadow rounded hidden
-                                opacity-0 scale-95 transition-all duration-200">
-                                <div @onclick="() => SelectedUser(item)" class="p-2 hover:bg-gray-100">Edit</div>
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                    @item.Role.ToString()
+                                </td>
+                                <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
+
+                                    <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                                    </button>
+                                    <div class="z-10 dropdown absolute right-2 top-10 w-36 bg-white border shadow rounded hidden
+                                                opacity-0 scale-95 transition-all duration-200">
+                                        <div @onclick="() => SelectedUser(item)" class="p-2 hover:bg-gray-100">Edit</div>
 
 
-                                <AuthorizeView Roles="CompanyAdmin">
-                                    <Authorized>
-                                        @if (Response.Id != item.ID.ToString())
-                                        {
-                                            @if (item.Role != Utility.Roles.SuperAdmin)
+                                        <AuthorizeView Roles="CompanyAdmin">
+                                            <Authorized>
+                                                @if (Response.Id != item.ID.ToString())
+                                                {
+                                                    @if (item.Role != Utility.Roles.SuperAdmin)
+                                                    {
+                                                        <div @onclick="() => DeleteConfirmModal(item.ID)" class="p-2 hover:bg-gray-100">Delete</div>
+
+                                                    }
+                                                }
+
+
+
+                                            </Authorized>
+                                        </AuthorizeView>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="px-5 py-3 text-sm whitespace-nowrap text-gray-500 bg-white">
+                                @item.ID
+                            </td>
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                @item.Name
+                            </td>
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800  bg-white">
+                                @item.Company.Name
+                            </td>
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                @item.UserName
+                            </td>
+
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+
+                                @if (item.Status == Utility.Status.Active)
+                                {
+                                    <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-green-50  text-green-700 ">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="text-theme-xs rounded-full px-2 py-0.5 font-medium bg-red-50 text-red-700 ">inactive</span>
+                                }
+
+                            </td>
+
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white">
+                                @item.Role.ToString()
+                            </td>
+                            <td class="px-5 py-3 text-sm font-medium whitespace-nowrap text-gray-800 bg-white relative">
+
+                                <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                                </button>
+                                <div class="z-10 dropdown absolute right-2 top-10 w-36 bg-white border shadow rounded hidden
+                                                            opacity-0 scale-95 transition-all duration-200">
+                                    <div @onclick="() => SelectedUser(item)" class="p-2 hover:bg-gray-100">Edit</div>
+
+
+                                    <AuthorizeView Roles="CompanyAdmin">
+                                        <Authorized>
+                                            @if (Response.Id != item.ID.ToString())
                                             {
-                                                <div @onclick="() => DeleteConfirmModal(item.ID)" class="p-2 hover:bg-gray-100">Delete</div>
-                                                 
+                                                @if (item.Role != Utility.Roles.SuperAdmin)
+                                                {
+                                                    <div @onclick="() => DeleteConfirmModal(item.ID)" class="p-2 hover:bg-gray-100">Delete</div>
+
+                                                }
                                             }
-                                        }
 
 
 
-                                    </Authorized>
-                                </AuthorizeView>
-                               
-                            </div>
-                        </td>
-                    </tr>
+                                        </Authorized>
+                                    </AuthorizeView>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                   
                 }
 
                 
