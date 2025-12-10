@@ -18,9 +18,10 @@
 </div>
 
 
-<div class=" rounded-xl border border-gray-200 ">
+
     @if (companyPagination.CompanyList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 ">
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -93,10 +94,11 @@
                             
                         </td>
 
-                        <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
+                       
 
                              @if(item.Status!=Utility.CompanyStatus.Pending)
                             {
+                            <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative">
                                 <button class="three-btn border border-gray-800 rounded-md " onclick="toggleThreeDotMenu()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="main-color icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
                                 </button>
@@ -110,26 +112,31 @@
                                         Delete
                                     </button>
                                 </div>
+                            </td>
                             }
                             else
                             {
-                            <td><button @onclick="() => UpdateCompanyStatus(item.ID)" class="btn btn-primary">Approve</button></td>
+                            <td class="px-2 py-2 text-sm font-medium   text-gray-800 bg-white relative"><button @onclick="() => UpdateCompanyStatus(item.ID)" class="btn btn-primary">Approve</button></td>
                             }
 
-                        </td>
+                      
                     </tr>
                 }
                 
              
             </tbody>
         </table>
+        </div>
 
+
+        <div class="flex justify-center mt-5">
         <PaginationComponent selected="@companyPagination.PageIndex"
                              TotalCount="@companyPagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+                             </div>
     }
     
-</div>
+
 
 
 <!--------------View Attachment Modal---------------->
