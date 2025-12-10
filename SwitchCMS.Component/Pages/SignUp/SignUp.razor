@@ -58,86 +58,98 @@
                         <div class="grid grid-cols-2 gap-4 mt-4">
 
                             <!-- Upload 1 -->
-                            <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
-                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                            <div>
+                                    <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="file_head_show_span">CR Certificate</span>
-                                    @if(!string.IsNullOrEmpty(companyModal.CRCertificate))
-                                        {
-                                            <span class="text-xs text-gray-500">@companyModal.CRCertificate</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-xs text-gray-500">Choose file</span>                                            
-                                        }
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="file_head_show_span">CR Certificate</span>
+                                            @if (!string.IsNullOrEmpty(companyModal.CRCertificate))
+                                            {
+                                                <span class="text-xs text-gray-500">@companyModal.CRCertificate</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-xs text-gray-500">Choose file</span>
+                                            }
 
-                                </div>
-                                    <InputFile  OnChange="@UploadCRFiles" id="file" accept="application/pdf" class="hidden" />
-                                     
-                                </label>
-                                <p style="color:red">@UploadCRFileError</p>
+                                        </div>
+                                        <InputFile OnChange="@UploadCRFiles" id="file" accept="application/pdf" class="hidden" />
 
+                                    </label>
+                                    <p style="color:red">@UploadCRFileError</p>
+
+                            </div>
+                            
                             <!-- Upload 2 -->
-                            <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
-                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+                            <div>
+                                    <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
 
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="file_head_show_span">National ID</span>
-                                        @if (!string.IsNullOrEmpty(companyModal.NationalID))
-                                        {
-                                            <span class="text-xs text-gray-500">@companyModal.NationalID</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-xs text-gray-500">Choose file</span>
-                                        }
-                                              </div>
-                                    <InputFile OnChange="@UploadNationalIdFiles" id="file" accept="application/pdf" class="hidden" />
-                            </label>
-                                <p style="color:red">@UploadNationalIDFileError</p>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="file_head_show_span">National ID</span>
+                                            @if (!string.IsNullOrEmpty(companyModal.NationalID))
+                                            {
+                                                <span class="text-xs text-gray-500">@companyModal.NationalID</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-xs text-gray-500">Choose file</span>
+                                            }
+                                        </div>
+                                        <InputFile OnChange="@UploadNationalIdFiles" id="file" accept="application/pdf" class="hidden" />
+                                    </label>
+                                    <p style="color:red">@UploadNationalIDFileError</p>
+                            </div>
+                            
                             <!-- Upload 3 -->
-                            <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
-                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+                            <div>
+                                    <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
 
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="file_head_show_span">VAT Certificate</span>
-                                        @if (!string.IsNullOrEmpty(companyModal.VATCertificate))
-                                        {
-                                            <span class="text-xs text-gray-500">@companyModal.VATCertificate</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-xs text-gray-500">Choose file</span>
-                                        }
-                                                      </div>
-                                    <InputFile OnChange="@UploadVatFiles" id="file" accept="application/pdf" class="hidden" />
-                            </label>
-                                <p style="color:red">@UploadVATFileError</p>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="file_head_show_span">VAT Certificate</span>
+                                            @if (!string.IsNullOrEmpty(companyModal.VATCertificate))
+                                            {
+                                                <span class="text-xs text-gray-500">@companyModal.VATCertificate</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-xs text-gray-500">Choose file</span>
+                                            }
+                                        </div>
+                                        <InputFile OnChange="@UploadVatFiles" id="file" accept="application/pdf" class="hidden" />
+                                    </label>
+                                    <p style="color:red">@UploadVATFileError</p>
+                            </div>
+                           
                             <!-- Upload 4 -->
-                            <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
-                                <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="file_head_show_span">Others</span>
-                                        @if (!string.IsNullOrEmpty(companyModal.Other))
-                                        {
-                                            <span class="text-xs text-gray-500">@companyModal.Other</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-xs text-gray-500">Choose file</span>
-                                        }
-                                                              </div>
-                                    <InputFile OnChange="@UploadOtherFiles" id="file" accept="application/pdf" class="hidden" />
-                            </label>
+                            <div>
+                                    <label class="flex items-center gap-3 border border-gray-300 bg-white rounded-full p-3 py-1 cursor-pointer hover:shadow-sm transition login-input-brdr login-input-bg">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" /><path d="M9 15l3 -3l3 3" /><path d="M12 12l0 9" /></svg>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="file_head_show_span">Others</span>
+                                            @if (!string.IsNullOrEmpty(companyModal.Other))
+                                            {
+                                                <span class="text-xs text-gray-500">@companyModal.Other</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-xs text-gray-500">Choose file</span>
+                                            }
+                                        </div>
+                                        <InputFile OnChange="@UploadOtherFiles" id="file" accept="application/pdf" class="hidden" />
+                                    </label>
+                            </div>
+                           
                         </div>
 
 
