@@ -93,12 +93,12 @@ namespace SwitchCMS.API.Services
                         bool exist= companyAdminUsers.Any(x=> x.ID == user.ID);
                         if (!exist)
                         {
-                            return new ModificationStatus { Success = false, Message= "Company Admin Created as Same Company" };
+                            return new ModificationStatus { Success = false, Message= "Already Company Admin Created for this Company" };
                         }
                     }
                     else
                     {
-                        return new ModificationStatus { Success = false, Message = "Company Admin Created as Same Company" };
+                        return new ModificationStatus { Success = false, Message = "Already Company Admin Created for this Company" };
                     }
 
                 }
