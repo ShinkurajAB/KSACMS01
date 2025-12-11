@@ -132,7 +132,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.Users.UserManagementComponent
 
                 }
             }
-
+            ErroMessage = string.Empty;
         }
         #endregion
 
