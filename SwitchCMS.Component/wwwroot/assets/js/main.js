@@ -404,3 +404,17 @@ function HideVehicleModal() {
     const modal = document.getElementById("addVehicleModal");
     modal.classList.add("hidden");
 }
+
+
+// Call Alert 
+function showAlert() {
+    // Use jQuery to show the alert
+    const alertBox = document.getElementById("successAlert");
+    alertBox.style.display = "block";
+    alertBox.classList.add("show");
+
+    setTimeout(() => {
+        $("#successAlert").removeClass("show").addClass("fade");
+        alertBox.style.display = "none";
+    }, 3000); // Auto-dismiss after 3 seconds
+}
