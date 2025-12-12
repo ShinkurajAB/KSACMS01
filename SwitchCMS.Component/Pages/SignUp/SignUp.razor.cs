@@ -174,9 +174,11 @@ namespace SwitchCMS.Component.Pages.SignUp
                 long maxFileSize = 10 * 1024 * 1024; // 10MB
 
                 // Read file into MemoryStream
+                var ms = new MemoryStream();
                 using var fileStream = SelectCRFile.OpenReadStream(maxFileSize);
-                using var ms = new MemoryStream();
                 await fileStream.CopyToAsync(ms);
+
+
                 ms.Position = 0;
                 Image       = ms;
                 companyModal.CRCertificate = SelectCRFile.Name;
@@ -190,7 +192,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadCRFileError = ex.Message;
+                UploadCRFileError = "File Size Exceeded";
             }
         }
         private async Task UploadNationalIdFiles(InputFileChangeEventArgs file)
@@ -200,9 +202,10 @@ namespace SwitchCMS.Component.Pages.SignUp
                 SelectNationalIDFile = file.File;
                 long maxFileSize = 10 * 1024 * 1024; // 10MB
 
+               
                 // Read file into MemoryStream
-                using var fileStream = SelectNationalIDFile.OpenReadStream(maxFileSize);
-                using var ms = new MemoryStream();
+                var ms = new MemoryStream();
+                using var fileStream = SelectCRFile.OpenReadStream(maxFileSize);
                 await fileStream.CopyToAsync(ms);
                 ms.Position = 0;
                 NationalIDImage = ms;
@@ -217,7 +220,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadNationalIDFileError = ex.Message;
+                UploadNationalIDFileError ="File Size Exceeded";
             }
         }
         private async Task UploadVatFiles(InputFileChangeEventArgs file)
@@ -228,8 +231,8 @@ namespace SwitchCMS.Component.Pages.SignUp
                 long maxFileSize = 10 * 1024 * 1024; // 10MB
 
                 // Read file into MemoryStream
-                using var fileStream = SelectVATFile.OpenReadStream(maxFileSize);
-                using var ms = new MemoryStream();
+                var ms = new MemoryStream();
+                using var fileStream = SelectCRFile.OpenReadStream(maxFileSize);
                 await fileStream.CopyToAsync(ms);
                 ms.Position = 0;
                 VATImage = ms;
@@ -244,7 +247,7 @@ namespace SwitchCMS.Component.Pages.SignUp
             }
             catch (Exception ex)
             {
-                UploadVATFileError = ex.Message;
+                UploadVATFileError = "File Size Exceeded";
             }
         }
         private async Task UploadOtherFiles(InputFileChangeEventArgs file)
@@ -255,8 +258,8 @@ namespace SwitchCMS.Component.Pages.SignUp
                 long maxFileSize = 10 * 1024 * 1024; // 10MB
 
                 // Read file into MemoryStream
-                using var fileStream = SelectOtherFile.OpenReadStream(maxFileSize);
-                using var ms = new MemoryStream();
+                var ms = new MemoryStream();
+                using var fileStream = SelectCRFile.OpenReadStream(maxFileSize);
                 await fileStream.CopyToAsync(ms);
                 ms.Position = 0;
                 OthersImage = ms;

@@ -132,7 +132,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.Users.UserManagementComponent
 
                 }
             }
-
+            ErroMessage = string.Empty;
         }
         #endregion
 
@@ -190,7 +190,7 @@ namespace SwitchCMS.Component.Pages.Dashboard.Users.UserManagementComponent
                 else
                 {
                     SucessOrFaild = SuccessorFailAlert.Faild;
-                    //ErroMessage = status.Message;
+                    ErroMessage = status.Message;
                 }
             }
 

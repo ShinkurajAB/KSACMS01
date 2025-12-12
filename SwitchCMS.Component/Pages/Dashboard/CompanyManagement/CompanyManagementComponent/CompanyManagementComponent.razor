@@ -88,6 +88,20 @@
                             </select>
                         </div>
 
+
+                        <div class="modal-form-group">
+
+                            <label class="mb-1.5 block text-sm font-medium text-gray-700 ">
+                                Expiry Date
+                            </label>
+                            <input type="date" placeholder="Start Date"
+                                   @bind="SelectedCompany.ValidationDate"
+                                   class=" h-9 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-2 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 ">
+
+
+
+                        </div>
+
                     </div>
                     <p class="error_msg" style="color:red">@errorMessage</p>
 
