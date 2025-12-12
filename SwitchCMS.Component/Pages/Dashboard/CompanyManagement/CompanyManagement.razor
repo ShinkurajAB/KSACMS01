@@ -18,9 +18,10 @@
 </div>
 
 
-<div class=" rounded-xl border border-gray-200 ">
+
     @if (companyPagination.CompanyList.Count > 0)
     {
+    <div class=" rounded-xl border border-gray-200 ">
         <table class="min-w-full text-left text-gray-700 ">
             <thead class="bg-gray-200 ">
                 <tr class="border-b border-gray-100">
@@ -123,13 +124,15 @@
              
             </tbody>
         </table>
-
+        </div>
+        <div class="flex justify-center mt-4">
         <PaginationComponent selected="@companyPagination.PageIndex"
                              TotalCount="@companyPagination.TotalPage"
                              SelectedPageChanged="PaginationResponse" />
+    </div>
     }
     
-</div>
+
 
 
 <!--------------View Attachment Modal---------------->

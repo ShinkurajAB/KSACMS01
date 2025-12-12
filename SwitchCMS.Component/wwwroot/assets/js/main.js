@@ -404,3 +404,16 @@ function HideVehicleModal() {
     const modal = document.getElementById("addVehicleModal");
     modal.classList.add("hidden");
 }
+function setAlertTimeOut() {
+    const alertBox = document.getElementById("successAlert");
+    setTimeout(() => {
+        alertBox.classList.remove("show");
+        alertBox.classList.add("hide");
+    }, 5000);
+}
+function showAlert() {
+    const alertBox = document.getElementById("successAlert");
+    alertBox.classList.remove("hide");
+    alertBox.classList.add("show");
+    setAlertTimeOut()
+}
