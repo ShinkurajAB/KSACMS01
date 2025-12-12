@@ -471,3 +471,49 @@ table {
   height: 350px;
   /* height: 100%; */
 }
+
+/*-------------Alert-----------*/
+.alert-bx {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100px); /* start completely hidden upward */
+  /* background: #333;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;*/
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 23em;
+}
+
+/* Slide Down */
+@keyframes slideDown {
+  0% {
+    transform: translate(-50%, -100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 20px);
+    opacity: 1;
+  }
+}
+/* Slide Up (hide) */
+@keyframes slideUp {
+  0% {
+    transform: translate(-50%, 20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100px);
+    opacity: 0;
+  }
+}
+.alert-bx.show {
+  animation: slideDown 0.45s ease forwards;
+}
+
+.alert-bx.hide {
+  animation: slideUp 0.45s ease forwards;
+}
