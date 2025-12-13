@@ -130,5 +130,13 @@ namespace SwitchCMS.Client.Services
             public static string DeleteOfferLetter(int offerId) => $"/api/OfferLetter/DeleteOfferLetter?offerId={offerId}";
             public static string GetOfferLetterById(int id) => $"/api/OfferLetter/GetOfferLetterById?Id={id}";
         }
+        public class HEM5Url
+        {
+            public static string CreateGeneralWarning() => "/api/GeneralWarning/CreateGeneralWarning";
+            public static string GetGeneralWarningByPageIndex() => $"/api/GeneralWarning/GetGeneralWarningByPageIndex";
+            public static string GetGeneralWarningByID(int ID) => $"/api/GeneralWarning/GetGeneralWarningByID?ID={ID}";
+            public static string UpdateGeneralWarning() => $"/api/GeneralWarning/UpdateGeneralWarning";
+            public static string DeleteGeneralWarningID(int ID) => $"/api/GeneralWarning/DeleteGeneralWarning?ID={ID}";
+        }
     }
 }

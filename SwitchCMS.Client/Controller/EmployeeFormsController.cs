@@ -18,10 +18,11 @@ namespace SwitchCMS.Client.Controller
         private readonly IHEM1Service employeeResignationService;
         private readonly IHEM3Service employeeAbsenceService;
         private readonly IHEM4Service offerLetterService;
+        private readonly IHEM5Service warningService;
         ListtoDataTableConverter ListToTable = new ListtoDataTableConverter();
 
         public EmployeeFormsController(IWebHostEnvironment webHostEnvironment,
-            IHEM1Service employeeResignationService, IHEM3Service employeeAbsenceService, IHEM4Service offerLetterService)
+            IHEM1Service employeeResignationService, IHEM3Service employeeAbsenceService, IHEM4Service offerLetterService, IHEM5Service warningService)
         {
             _webHostEnvironment = webHostEnvironment;
             this.employeeResignationService = employeeResignationService;
@@ -29,6 +30,7 @@ namespace SwitchCMS.Client.Controller
             System.Text.Encoding.GetEncoding("windows-1252");
             this.employeeAbsenceService = employeeAbsenceService;
             this.offerLetterService = offerLetterService;
+            this.warningService = warningService;
         }
 
 
@@ -139,6 +141,50 @@ namespace SwitchCMS.Client.Controller
                 localReport.EnableExternalImages = true;
                 localReport.LoadReportDefinition(reportDefinition);
                 localReport.DataSources.Add(new ReportDataSource("dsOfferLetter", dt));
+
+                byte[] pdf = localReport.Render("PDF");
+                // localReport.AddDataSource("dsPrintInvoice", dt);
+                fs.Dispose();
+                //var result = localReport.Execute(RenderType.Pdf, extention, null, mimeType);
+
+                return File(pdf, "application/pdf");
+                //return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message + " " + ex.InnerException + "\n\n" + ex.StackTrace);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetGeneralWarningForms(int ID, string token)
+        {
+            try
+            {
+                Thread.CurrentThread.CurrentCulture =
+                Thread.CurrentThread.CurrentUICulture =
+                CultureInfo.DefaultThreadCurrentCulture =
+                CultureInfo.DefaultThreadCurrentUICulture = System.Globalization.CultureInfo.InvariantCulture;
+
+                var warningDetails = await warningService.GetGeneralWarningByID(ID, token);
+                if(warningDetails!=null)
+                {
+                    warningDetails.CreatedDate = warningDetails.CreatedDate.Date;
+                }
+                List<HEM5> data = new List<HEM5>();
+                data.Add(warningDetails);
+                DataTable dt = ListToTable.ToDataTable<HEM5>(data);
+                string mimeType = string.Empty;
+                int extention = 1;
+                string path = $"{_webHostEnvironment.WebRootPath}\\Report\\GeneralWarning.rdlc";
+
+                Stream reportDefinition;
+                using var fs = new FileStream(path, FileMode.Open);
+                reportDefinition = fs;
+
+                LocalReport localReport = new LocalReport();
+                localReport.EnableExternalImages = true;
+                localReport.LoadReportDefinition(reportDefinition);
+                localReport.DataSources.Add(new ReportDataSource("dsGeneralWarning", dt));
 
                 byte[] pdf = localReport.Render("PDF");
                 // localReport.AddDataSource("dsPrintInvoice", dt);

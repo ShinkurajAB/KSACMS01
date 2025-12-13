@@ -31,6 +31,7 @@ namespace SwitchCMS.Client.AppService
             builder.Services.AddScoped<IHEM1Service, HEM1Service>();
             builder.Services.AddScoped<IHEM3Service, HEM3Service>();
             builder.Services.AddScoped<IHEM4Service, HEM4Service>();
+            builder.Services.AddScoped<IHEM5Service, HEM5Service>();
         }
     }
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Report\GeneralWarning.rdlc" />
     <Content Remove="wwwroot\Report\VehicleHandover.rdlc" />
   </ItemGroup>
 
@@ -24,10 +25,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Report\GeneralWarning.rdlc" />
     <None Include="wwwroot\Report\VehicleHandover.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DataSetDetails\EmployeeForms\GeneralWarningDataSet.Designer.cs">
+      <DependentUpon>GeneralWarningDataSet.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="DataSetDetails\Employeeform\dsEmployeeResignation.Designer.cs">
       <DependentUpon>dsEmployeeResignation.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -41,6 +48,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DataSetDetails\EmployeeForms\GeneralWarningDataSet.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>GeneralWarningDataSet.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
     <None Update="DataSetDetails\Employeeform\dsEmployeeResignation.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>dsEmployeeResignation.Designer.cs</LastGenOutput>

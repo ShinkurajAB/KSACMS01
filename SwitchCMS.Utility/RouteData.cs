@@ -31,6 +31,7 @@ namespace SwitchCMS.Utility
         public const string EmployeeDirectNotification = "/Employee-directNotification";
         public const string EmployeeAbsentee = "/Form-absentee";
         public const string EmployeeOfferLetter = "/Form-offerletter";
+        public const string EmployeeWarningLetter = "/Form-warningletter";
 
         #region Vehicle 
         public const string VehicleManagement = "/Vehicle-management";
@@ -54,6 +55,7 @@ namespace SwitchCMS.Utility
         public const string PrintEmployeeResignation = "api/EmployeeForms/GetResignationForms";
         public const string PrintEmployeeAbsentee = "api/EmployeeForms/GetAbsenceForms";
         public const string PrintOfferLetter = "api/EmployeeForms/GetOfferLetterForms";
+        public const string PrintWarningLetter = "api/EmployeeForms/GetGeneralWarningForms";
         #endregion
     }
 }

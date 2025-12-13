@@ -147,7 +147,9 @@ namespace SwitchCMS.API.AppService
             // Employee Direct Notification
             builder.Services.AddScoped<IHEM2Repository, HEM2Repository>();
             builder.Services.AddScoped<IHEM2Service, HEM2Service>();
-
+            //General Warning
+            builder.Services.AddScoped<IHEM5Repository, HEM5Repository>();
+            builder.Services.AddScoped<IHEM5Service, HEM5Service>();
 
         }
 
