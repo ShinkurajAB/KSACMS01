@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GeneralWarningDataSet" targetNamespace="http://tempuri.org/GeneralWarningDataSet.xsd" xmlns:mstns="http://tempuri.org/GeneralWarningDataSet.xsd" xmlns="http://tempuri.org/GeneralWarningDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GeneralWarningDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="GeneralWarningDataSet" msprop:Generator_DataSetName="GeneralWarningDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dsGeneralWarning" msprop:Generator_RowEvHandlerName="dsGeneralWarningRowChangeEventHandler" msprop:Generator_RowDeletedName="dsGeneralWarningRowDeleted" msprop:Generator_RowDeletingName="dsGeneralWarningRowDeleting" msprop:Generator_RowEvArgName="dsGeneralWarningRowChangeEvent" msprop:Generator_TablePropName="dsGeneralWarning" msprop:Generator_RowChangedName="dsGeneralWarningRowChanged" msprop:Generator_RowChangingName="dsGeneralWarningRowChanging" msprop:Generator_TableClassName="dsGeneralWarningDataTable" msprop:Generator_RowClassName="dsGeneralWarningRow" msprop:Generator_TableVarName="tabledsGeneralWarning" msprop:Generator_UserTableName="dsGeneralWarning">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_UserColumnName="EmployeeID" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyID" msprop:Generator_ColumnPropNameInRow="CompanyID" msprop:Generator_ColumnPropNameInTable="CompanyIDColumn" msprop:Generator_ColumnVarNameInTable="columnCompanyID" msprop:Generator_UserColumnName="CompanyID" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
+              <xs:element name="Violation" msprop:Generator_ColumnPropNameInRow="Violation" msprop:Generator_ColumnPropNameInTable="ViolationColumn" msprop:Generator_ColumnVarNameInTable="columnViolation" msprop:Generator_UserColumnName="Violation" type="xs:string" minOccurs="0" />
+              <xs:element name="AdditionalDetails" msprop:Generator_ColumnPropNameInRow="AdditionalDetails" msprop:Generator_ColumnPropNameInTable="AdditionalDetailsColumn" msprop:Generator_ColumnVarNameInTable="columnAdditionalDetails" msprop:Generator_UserColumnName="AdditionalDetails" type="xs:string" minOccurs="0" />
+              <xs:element name="CreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_UserColumnName="CreatedDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

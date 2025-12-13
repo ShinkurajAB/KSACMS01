@@ -418,3 +418,19 @@ function showAlert() {
         alertBox.style.display = "none";
     }, 3000); // Auto-dismiss after 3 seconds
 }
+
+// Employee Warning Modal
+function CreateEmployeeWarningModal() {
+    const modal = document.getElementById("addEmployeeWarning");
+    const popup = document.getElementById("ModalContaner");
+    modal.classList.remove("hidden");
+    popup.classList.remove("popup-animate");
+    void popup.offsetWidth;
+    popup.classList.add("popup-animate");
+
+}
+
+function HideEmployeeWarningModal() {
+    const Modal = document.getElementById("addEmployeeWarning");
+    Modal.classList.add("hidden");
+}
